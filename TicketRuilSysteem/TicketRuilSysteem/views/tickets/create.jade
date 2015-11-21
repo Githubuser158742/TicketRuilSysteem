@@ -1,0 +1,20 @@
+﻿doctype html
+html
+  head
+    title
+  body
+  form(method="POST", action="/tickets")
+    p
+        label(for="title")Title<br />
+        input#title(name="title")
+    p
+        label(for="owner")Owner<br/>
+        input#owner(name="owner")
+    p
+        label(for="price")Price<br/>
+        input#price(name="price")
+    p
+        label(for="category")Category<br/>
+        input#category(name="category")
+    p
+        input(type="submit",value="Create")

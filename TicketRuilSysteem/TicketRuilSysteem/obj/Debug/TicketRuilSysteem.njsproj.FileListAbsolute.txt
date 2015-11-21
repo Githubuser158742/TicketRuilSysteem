@@ -1,0 +1,2 @@
+C:\Users\jimbu\Documents\GitHub\TicketRuilSysteem\TicketRuilSysteem\TicketRuilSysteem\obj\Debug\TicketRuilSysteem.njsprojResolveAssemblyReference.cache
+C:\Users\jimbu\Documents\GitHub\TicketRuilSysteem\TicketRuilSysteem\TicketRuilSysteem\bin\Microsoft.NodejsTools.WebRole.dll

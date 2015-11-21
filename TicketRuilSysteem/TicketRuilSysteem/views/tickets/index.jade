@@ -1,0 +1,13 @@
+﻿doctype html
+html
+  head
+    title
+  body
+  h1=title
+  p
+    ul
+        -for(var ticket in tickets){
+        li
+            a(href="/tickets/"+
+                encodeURIComponent(ticket))=tickets[ticket].title
+                -};
