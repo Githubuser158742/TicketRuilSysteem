@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3bc341db-1736-4d39-8a60-a9b66fdaa5b5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bin\www</StartupFile>
+    <StartupFile>bin\www.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -35,15 +35,12 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\tickets.js" />
     <Compile Include="routes\users.js" />
-    <Compile Include="bin\www" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
-    <Content Include="views\tickets\create.jade" />
-    <Content Include="views\tickets\index.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
@@ -54,7 +51,6 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
-    <Folder Include="views\tickets\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

@@ -1,0 +1,23 @@
+angular.module('ticketApp',['ui.router','ngResource','ticketApp.controllers','ticketApp.services']);
+
+angular.module('ticketApp').config(function($stateProvider){
+    $stateProvider.state('tickets',{
+        url:'/tickets',
+        templateUrl:'ticketApp/partials/tickets.html',
+        controller:'TicketListController'
+    }).state('viewTicket',{
+       url:'/tickets/:id/view',
+       templateUrl:'ticketApp/partials/ticket-view.html',
+       controller:'TicketViewController'
+    }).state('newTicket',{
+        url:'/tickets/new',
+        templateUrl:'ticketApp/partials/ticket-add.html',
+        controller:'TicketCreateController'
+    }).state('editTicket',{
+        url:'/tickets/:id/edit',
+        templateUrl:'ticketApp/partials/ticket-edit.html',
+        controller:'TicketEditController'
+    });
+}).run(function($state){
+   $state.go('tickets');
+});

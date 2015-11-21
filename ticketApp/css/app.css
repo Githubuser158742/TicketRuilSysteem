@@ -1,0 +1,14 @@
+.top-buffer{
+    margin-top:10px;
+}
+
+.tickettable tr td:nth-child(2){
+    width: 150px;
+}
+
+.tickettable tr:nth-child(1) td{
+    border-top: none;
+}
+a.nodecoration{
+    text-decoration:none;
+}
