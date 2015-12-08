@@ -45,6 +45,8 @@
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
+    <Content Include="views\login.jade" />
+    <Content Include="views\register.jade" />
     <Content Include="views\users\details.jade" />
     <Content Include="views\users\edit.jade" />
     <Content Include="views\users\index.jade" />

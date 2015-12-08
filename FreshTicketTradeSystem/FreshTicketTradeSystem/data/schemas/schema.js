@@ -1,7 +1,8 @@
 ﻿var mongoose = require('mongoose');
 var emailRegExp = /.+\@.+\..+/;
+var schema = mongoose.Schema;
 
-var UserSchema = new mongoose.Schema({
+var userSchema = new schema({
     username: { type: String, unique: true },
     name: { type: String, index: true },
     profession: String,
@@ -18,6 +19,13 @@ var UserSchema = new mongoose.Schema({
         enum: ['M', 'F']
     },
     createdOn: { type: Date, 'default': Date.now }
+});
+
+var ticketSchema = new schema({
+    ticketName: String,
+    price: Number,
+    description: String,
+    createdOn: { type: Data, 'default': Date.now }
 });
 
 //var TicketSchema = new mongoose.Schema({
