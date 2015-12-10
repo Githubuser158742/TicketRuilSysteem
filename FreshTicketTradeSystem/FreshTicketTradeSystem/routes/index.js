@@ -3,7 +3,6 @@ var passport = require('passport');
 var User = require('../data/models/user');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function (req, res) {
     res.render('index', { user: req.user });
 });
@@ -13,7 +12,7 @@ router.get('/register', function (req, res){
 })
 
 router.post('/register', function (req, res) {
-    User.register(new User({ username : req.body.username }), req.body.password, function (err, user) {
+    User.register(new User({ username : req.body.username, email:req.body.email }), req.body.password, function (err, user) {
         if (err) {
             return res.render('register', { user : user });
         }
