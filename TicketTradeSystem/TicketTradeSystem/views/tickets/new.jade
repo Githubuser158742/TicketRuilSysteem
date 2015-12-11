@@ -1,0 +1,9 @@
+﻿extends ../layout
+
+block content
+    h1 New Ticket
+    form(role='form',action='/tickets',method='post')
+        input(type='text',name='name',placeholder='name')
+        input(type='text',name='description',placeholder='description')
+        input(type='number',name='price',placeholder='price')
+        button(type='submit') Add Ticket

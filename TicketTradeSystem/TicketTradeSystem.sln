@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FreshTicketTradeSystem", "FreshTicketTradeSystem\FreshTicketTradeSystem.njsproj", "{69117130-241A-4D92-A077-F7C18D7581C2}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TicketTradeSystem", "TicketTradeSystem\TicketTradeSystem.njsproj", "{2D08814A-CF3D-4734-95BF-E1ABA7529004}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{69117130-241A-4D92-A077-F7C18D7581C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69117130-241A-4D92-A077-F7C18D7581C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69117130-241A-4D92-A077-F7C18D7581C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69117130-241A-4D92-A077-F7C18D7581C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D08814A-CF3D-4734-95BF-E1ABA7529004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D08814A-CF3D-4734-95BF-E1ABA7529004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D08814A-CF3D-4734-95BF-E1ABA7529004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D08814A-CF3D-4734-95BF-E1ABA7529004}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

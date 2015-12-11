@@ -1,0 +1,11 @@
+﻿extends ../layout
+
+block content
+    h1=title
+    p
+        a(href="/tickets/new") Add New Ticket
+    ul
+        - for(var ticket in ticketslist) {
+        li
+            span= ticketslist[ticket].name
+        - };
