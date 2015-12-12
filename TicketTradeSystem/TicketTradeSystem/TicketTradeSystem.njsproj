@@ -45,6 +45,7 @@
     <Compile Include="routes\tickets.js" />
     <Compile Include="bin\www" />
     <Compile Include="sockets.js" />
+    <Content Include="JSLintNet.json" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
@@ -56,7 +57,9 @@
     <Content Include="views\profile.jade" />
     <Content Include="views\signup.jade" />
     <Content Include="views\tickets\detail.jade" />
+    <Content Include="views\tickets\edit.jade" />
     <Content Include="views\tickets\index.jade" />
+    <Content Include="views\tickets\mytickets.jade" />
     <Content Include="views\tickets\new.jade" />
   </ItemGroup>
   <ItemGroup>

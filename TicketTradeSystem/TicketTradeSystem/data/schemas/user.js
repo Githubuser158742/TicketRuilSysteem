@@ -1,7 +1,8 @@
-﻿var mongoose = require('mongoose');
+﻿"use strict";
+var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var userSchema = new mongoose.Schema( {
+var userSchema = new mongoose.Schema({
     local: {
         email: String,
         password: String
@@ -24,7 +25,7 @@ var userSchema = new mongoose.Schema( {
         email: String,
         name: String
     },
-    createdOn: {type:Date,'default':Date.now}
+    createdOn: {type: Date, default: Date.now}
 });
 
 userSchema.methods.generateHash = function (password) {

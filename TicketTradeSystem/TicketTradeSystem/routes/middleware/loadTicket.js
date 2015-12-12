@@ -1,8 +1,11 @@
-﻿var Ticket = require('../../data/models/ticket');
+﻿"use strict";
+var Ticket = require('../../data/models/ticket');
 
-function loadTicket(req, res, next){
-    Ticket.findOne({ name: req.params.name }, function (err, ticket) {
-        if (err) { return next(err); }
+function loadTicket(req, res, next) {
+    Ticket.findOne({name: req.params.name}, function (err, ticket) {
+        if (err) {
+            return next(err);
+        }
         if (!ticket) {
             return res.send('Not found', 404);
         } else {

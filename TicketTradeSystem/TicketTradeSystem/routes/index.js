@@ -1,4 +1,5 @@
-﻿var express = require('express');
+﻿"use strict";
+var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
@@ -13,8 +14,7 @@ router.get('/login', function (req, res) {
 
 router.post('/login', passport.authenticate('local-login',{
     successRedirect : '/profile',
-    failureRedirect : '/login' 
-}));
+    failureRedirect : '/login'}));
 
 router.get('/signup', function (req, res) {
     res.render('signup.jade');
@@ -53,12 +53,10 @@ router.get('/profile-fb', function (req, res) {
     });
 });
 
-function isLoggedIn(req, res, next) {
-    
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
+function isLoggedIn(req, res, next) { // if user is authenticated in the session, carry on
+    if (req.isAuthenticated()) {
         return next();
-    
+    }
     // if they aren't redirect them to the home page
     res.redirect('/');
 };

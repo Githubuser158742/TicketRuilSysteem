@@ -7,5 +7,8 @@ block content
     ul
         - for(var ticket in ticketslist) {
         li
-            span= ticketslist[ticket].name
+            =ticketslist[ticket].name
+            br
+            p
+                a(href='/tickets/#{ticketslist[ticket]._id}') Show
         - };
