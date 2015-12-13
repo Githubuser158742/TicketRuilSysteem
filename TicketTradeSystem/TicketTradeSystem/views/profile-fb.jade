@@ -5,5 +5,9 @@ block content
     h2 Welcome #{user._id}
     h3 #{user.facebook.name}
     h4 #{user.facebook.email}
-        p
+    p
+            a(href='/tickets/') Overview Tickets
+    p
+            a(href='/tickets/mytickets') View my tickets
+    p
             a(href='/logout') Logout

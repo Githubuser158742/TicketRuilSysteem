@@ -8,10 +8,9 @@ function loadTicket(req, res, next) {
         }
         if (!ticket) {
             return res.send('Not found', 404);
-        } else {
-            req.ticket = ticket;
-            next();
         }
+        req.ticket = ticket;
+        next();
     });
 }
 

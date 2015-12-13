@@ -4,16 +4,16 @@
 var ticketsRepo = (function () {
     var Ticket = require('./ticket.js');
     var getAllTickets = function (next) {
-        Ticket.find({}).sort('name').exec(function (err, docs) {
-            if (err) {
-                console.log(err);
-                next(err, null);
-            }
-            next(null, docs);
-        });
-    },
-        getTicketsByIdUser = function (id,next){
-            Ticket.find({ 'userid': id }).sort('name').exec(function (err, docs) {
+            Ticket.find({}).sort('name').exec(function (err, docs) {
+                if (err) {
+                    console.log(err);
+                    next(err, null);
+                }
+                next(null, docs);
+            });
+        },
+        getTicketsByIdUser = function (id, next) {
+            Ticket.find({userid: id}).sort('name').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -36,6 +36,6 @@ var ticketsRepo = (function () {
         getTicketsByIdUser: getTicketsByIdUser,
         createTicket: createTicket
     };
-})();
+}());
 
 module.exports = ticketsRepo;

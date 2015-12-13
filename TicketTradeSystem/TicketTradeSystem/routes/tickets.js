@@ -27,12 +27,12 @@ router.get('/mytickets', function (req, res) {
             res.status(500).send('server error - tickets user');
             res.end();
         }
-        res.render('tickets/mytickets', { title: 'My Tickets', ticketslistuser: ticketsuser });
+        res.render('tickets/mytickets', {title: 'My Tickets', ticketslistuser: ticketsuser});
     });
 });
 
 router.get('/new', function (req, res) {
-    res.render('tickets/new', { title: 'New Ticket' });
+    res.render('tickets/new', {title: 'New Ticket'});
 });
 
 router.post('/', function (req, res, next) {
@@ -53,7 +53,7 @@ router.get('/:id', function (req, res) {
         if (err) {
             console.log('Error: ' + err);
         } else {
-            res.render('tickets/detail', { ticket: ticket });
+            res.render('tickets/detail', {ticket: ticket});
         }
     });
 });
@@ -63,7 +63,7 @@ router.get('/:id/edit', function (req, res) {
         if (err) {
             console.log('Error: ' + err);
         } else {
-            res.render('tickets/edit', { ticket: ticket });
+            res.render('tickets/edit', {ticket: ticket});
         }
     });
 });
@@ -72,13 +72,13 @@ router.post('/:id/edit', function (req, res) {
     var name = req.body.name;
     var description = req.body.description;
     var price = req.body.price;
-    
+
     Ticket.findById(req.params.id, function (err, ticket) {
         ticket.update({
             name: name,
             description: description,
             price: price
-        }, function (err, ticketID) {
+        }, function (err) {
             if (err) {
                 res.send('Update failed' + err);
             } else {
@@ -88,28 +88,26 @@ router.post('/:id/edit', function (req, res) {
                     }
                 });
             }
-        })
+        });
     });
 });
 
 router.get('/:id/delete', function (req, res) {
-    Ticket.findById(req.params.id, function (err, ticket){
+    Ticket.findById(req.params.id, function (err, ticket) {
         if (err) {
             return console.error(err);
-        } else {
-            ticket.remove(function (err, ticket){
-                if (err) {
-                    return console.error(err);
-                } else {
-                    res.format({
-                        html: function (){
-                            res.redirect('/tickets');
-                        }
-                    })
-                }
-            })
         }
-    })
+        ticket.remove(function (err) {
+            if (err) {
+                return console.error(err);
+            }
+            res.format({
+                html: function () {
+                    res.redirect('/tickets');
+                }
+            });
+        });
+    });
 });
 
 module.exports = router;
