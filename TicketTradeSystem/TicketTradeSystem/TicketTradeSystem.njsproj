@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2d08814a-cf3d-4734-95bf-e1aba7529004</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bin\www.js</StartupFile>
+    <StartupFile>bin\www</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -39,12 +39,13 @@
     <Compile Include="data\models\ticket.js" />
     <Compile Include="data\models\ticketsRepo.js" />
     <Compile Include="data\models\user.js" />
+    <Compile Include="data\schemas\event.js" />
     <Compile Include="data\schemas\ticket.js" />
     <Compile Include="data\schemas\user.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\middleware\loadTicket.js" />
     <Compile Include="routes\tickets.js" />
-    <Compile Include="bin\www.js" />
+    <Compile Include="bin\www" />
     <Compile Include="sockets.js" />
     <Content Include="JSLintNet.json" />
     <Content Include="package.json" />
