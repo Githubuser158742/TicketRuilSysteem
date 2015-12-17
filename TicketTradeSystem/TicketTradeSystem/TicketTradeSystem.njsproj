@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2d08814a-cf3d-4734-95bf-e1aba7529004</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bin\www</StartupFile>
+    <StartupFile>bin\www.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -44,7 +44,7 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\middleware\loadTicket.js" />
     <Compile Include="routes\tickets.js" />
-    <Compile Include="bin\www" />
+    <Compile Include="bin\www.js" />
     <Compile Include="sockets.js" />
     <Content Include="JSLintNet.json" />
     <Content Include="package.json" />
