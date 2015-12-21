@@ -56,7 +56,7 @@
     <Content Include="views\events\detail.jade" />
     <Content Include="views\events\edit.jade" />
     <Content Include="views\events\index.jade" />
-    <Content Include="views\events\mytickets.jade" />
+    <Content Include="views\events\myevents.jade" />
     <Content Include="views\events\new.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />

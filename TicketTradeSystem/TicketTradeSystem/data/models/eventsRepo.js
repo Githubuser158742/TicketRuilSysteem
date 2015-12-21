@@ -21,6 +21,16 @@ var eventsRepo = (function () {
                 next(null, docs);
             });
         },
+
+        getEventsByIdUser = function (id, next) {
+            Event.find({ userId: id }).sort('name').exec(function (err, docs) {
+                if (err) {
+                    console.log(err);
+                    next(err, null);
+                }
+                next(null, docs);
+            });
+        },
         createEvent = function (event, next) {
             event.creationDate = new Date();
             Event.create(event, function (err) {
@@ -34,6 +44,7 @@ var eventsRepo = (function () {
         model: Event,
         getAllEvents: getAllEvents,
         getEventsByCity: getEventsByCity,
+        getEventsByIdUser: getEventsByIdUser,
         createEvent: createEvent
     };
 }());

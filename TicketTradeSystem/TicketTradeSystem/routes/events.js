@@ -21,22 +21,22 @@ router.get('/', function (req, res) {
     });
 });
 
-//router.get('/mytickets', function (req, res) {
-//    ticketsRepo.getTicketsByIdUser(req._passport.session.user, function (err, ticketsuser) {
-//        if (err) {
-//            res.status(500).send('server error - tickets user');
-//            res.end();
-//        }
-//        res.render('tickets/mytickets', { title: 'My Tickets', ticketslistuser: ticketsuser });
-//    });
-//});
+router.get('/myevents', function (req, res) {
+    eventsRepo.getEventsByIdUser(req._passport.session.user, function (err, eventsuser) {
+        if (err) {
+            res.status(500).send('server error - events user');
+            res.end();
+        }
+        res.render('events/myevents', { title: 'My Events', eventslistuser: eventsuser });
+    });
+});
 
 router.get('/new', function (req, res) {
     res.render('events/new', { title: 'New Event' });
 });
 
 router.post('/', function (req, res, next) {
-    req.body.userid = req._passport.session.user;
+    req.body.userId = req._passport.session.user;
     eventsRepo.createEvent(req.body, function (next) {
         if (next.errors) {
             next(new Error(next.message));
@@ -48,66 +48,78 @@ router.post('/', function (req, res, next) {
 });
 
 
-//router.get('/:id', function (req, res) {
-//    Ticket.findById(req.params.id, function (err, ticket) {
-//        if (err) {
-//            console.log('Error: ' + err);
-//        } else {
-//            res.render('tickets/detail', { ticket: ticket });
-//        }
-//    });
-//});
+router.get('/:id', function (req, res) {
+    Event.findById(req.params.id, function (err, event) {
+        if (err) {
+            console.log('Error: ' + err);
+        } else {
+            res.render('events/detail', { event: event });
+        }
+    });
+});
 
-//router.get('/:id/edit', function (req, res) {
-//    Ticket.findById(req.params.id, function (err, ticket) {
-//        if (err) {
-//            console.log('Error: ' + err);
-//        } else {
-//            res.render('tickets/edit', { ticket: ticket });
-//        }
-//    });
-//});
+router.get('/:id/edit', function (req, res) {
+    Event.findById(req.params.id, function (err, event) {
+        if (err) {
+            console.log('Error: ' + err);
+        } else {
+            res.render('events/edit', { event: event });
+        }
+    });
+});
 
-//router.post('/:id/edit', function (req, res) {
-//    var name = req.body.name;
-//    var description = req.body.description;
-//    var price = req.body.price;
+router.post('/:id/edit', function (req, res) {
+    var name = req.body.name;
+    var description = req.body.description;
+    var date = req.body.date;
+    var time = req.body.time;
+    var location = req.body.location;
+    var city = req.body.city;
+    var price = req.body.price;
+    var pictureUrl = req.body.pictureUrl;
+    var tags = req.body.tags;
     
-//    Ticket.findById(req.params.id, function (err, ticket) {
-//        ticket.update({
-//            name: name,
-//            description: description,
-//            price: price
-//        }, function (err) {
-//            if (err) {
-//                res.send('Update failed' + err);
-//            } else {
-//                res.format({
-//                    html: function () {
-//                        res.redirect('/tickets/' + ticket._id);
-//                    }
-//                });
-//            }
-//        });
-//    });
-//});
+    Event.findById(req.params.id, function (err, event) {
+        event.update({
+            name: name,
+            description: description,
+            date: date,
+            time: time,
+            location: location,
+            city: city,
+            price: price,
+            pictureUrl: pictureUrl,
+            tags: tags
+        }, function (err) {
+            if (err) {
+                res.send('Update failed' + err);
+            } else {
+                res.format({
+                    html: function () {
+                        res.redirect('/events/' + event._id);
+                    }
+                });
+            }
+        });
+    });
+});
 
-//router.get('/:id/delete', function (req, res) {
-//    Ticket.findById(req.params.id, function (err, ticket) {
-//        if (err) {
-//            return console.error(err);
-//        }
-//        ticket.remove(function (err) {
-//            if (err) {
-//                return console.error(err);
-//            }
-//            res.format({
-//                html: function () {
-//                    res.redirect('/tickets');
-//                }
-//            });
-//        });
-//    });
-//});
+router.get('/:id/delete', function (req, res) {
+    Event.findById(req.params.id, function (err, event) {
+        if (err) {
+            return console.error(err);
+        }
+        event.remove(function (err) {
+            if (err) {
+                return console.error(err);
+            }
+            res.format({
+                html: function () {
+                    res.redirect('/events');
+                }
+            });
+        });
+    });
+});
 
 module.exports = router;

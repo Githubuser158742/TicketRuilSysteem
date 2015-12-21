@@ -1,13 +1,25 @@
 ﻿extends ../layout
 
 block content
-    h1 #{ticket._id}
-        form(role='form',action='/tickets/#{ticket.id}/edit',method='post')
+    h1 #{event._id}
+        form(role='form',action='/events/#{event.id}/edit',method='post')
             p Name: 
-                input(type='text', value='#{ticket.name}', name='name')
+                input(type='text', value='#{event.name}', name='name')
             p Description: 
-                input(type='text', value='#{ticket.description}', name='description')
+                input(type='text', value='#{event.description}', name='description')
+            p Date:
+                input(type='date', value='#{event.date}', name='date')
+            p Time:
+                input(type='time', value='#{event.time}', name='time')
+            p Location
+                input(type='text', value='#{event.location}', name='location')
+            p City
+                input(type='text', value='#{event.city}', name='city')
             p Price: 
-                input(type='number', value='#{ticket.price}', name='price')
+                input(type='number', value='#{event.price}', name='price')
+            p pictureUrl:
+                input(type='text', value='#{event.pictureUrl}', name='pictureUrl')
+            p Tags:
+                input(type='text', value='#{event.tags}', name='tags')
             p 
                 button(type='submit') Update

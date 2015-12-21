@@ -5,5 +5,11 @@ block content
     form(role='form',action='/events',method='post')
         input(type='text',name='name',placeholder='name')
         input(type='text',name='description',placeholder='description')
+        input(type='date',name='date',placeholder='date')
+        input(type='time',name='time',placeholder='time')
+        input(type='text',name='location',placeholder='location')
+        input(type='text',name='city',placeholder='city')
         input(type='number',name='price',placeholder='price')
+        input(type='text',name='pictureUrl',placeholder='pictureUrl')
+        input(type='text',name='tags',placeholder='tags')
         button(type='submit') Add Event

@@ -1,0 +1,18 @@
+﻿extends ../layout
+
+block content
+    h1=title
+    p
+        a(href="/events/new") Add New Event
+    ul
+            - for(var event in eventslistuser) {
+            li
+                =eventslistuser[event].name
+                br
+                p
+                    a(href='/events/#{eventslistuser[event]._id}') Show
+                p
+                    a(href='/events/#{eventslistuser[event]._id}/edit') Edit
+                p
+                    a(href='/events/#{eventslistuser[event]._id}/delete') Delete
+            - };
