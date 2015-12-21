@@ -1,0 +1,14 @@
+﻿extends ../layout
+
+block content
+    h1=title
+    p
+        a(href="/events/new") Add New Ticket
+    ul
+        - for(var ticket in ticketslist) {
+        li
+            =ticketslist[ticket].name
+            br
+            p
+                a(href='/events/#{eventslist[event]._id}') Show
+        - };

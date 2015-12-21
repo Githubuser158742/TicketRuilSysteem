@@ -1,0 +1,9 @@
+﻿extends ../layout
+
+block content
+    h1 New Event
+    form(role='form',action='/events',method='post')
+        input(type='text',name='name',placeholder='name')
+        input(type='text',name='description',placeholder='description')
+        input(type='number',name='price',placeholder='price')
+        button(type='submit') Add Event

@@ -36,12 +36,14 @@
     <Compile Include="config\passport.js" />
     <Compile Include="data\connectDBService.js" />
     <Compile Include="data\models\event.js" />
+    <Compile Include="data\models\eventsRepo.js" />
     <Compile Include="data\models\ticket.js" />
     <Compile Include="data\models\ticketsRepo.js" />
     <Compile Include="data\models\user.js" />
     <Compile Include="data\schemas\event.js" />
     <Compile Include="data\schemas\ticket.js" />
     <Compile Include="data\schemas\user.js" />
+    <Compile Include="routes\events.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\middleware\loadTicket.js" />
     <Compile Include="routes\tickets.js" />
@@ -51,6 +53,11 @@
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
+    <Content Include="views\events\detail.jade" />
+    <Content Include="views\events\edit.jade" />
+    <Content Include="views\events\index.jade" />
+    <Content Include="views\events\mytickets.jade" />
+    <Content Include="views\events\new.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
@@ -77,6 +84,7 @@
     <Folder Include="routes\" />
     <Folder Include="routes\middleware\" />
     <Folder Include="views\" />
+    <Folder Include="views\events\" />
     <Folder Include="views\tickets\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

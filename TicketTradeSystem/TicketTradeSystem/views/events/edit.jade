@@ -1,0 +1,13 @@
+﻿extends ../layout
+
+block content
+    h1 #{ticket._id}
+        form(role='form',action='/tickets/#{ticket.id}/edit',method='post')
+            p Name: 
+                input(type='text', value='#{ticket.name}', name='name')
+            p Description: 
+                input(type='text', value='#{ticket.description}', name='description')
+            p Price: 
+                input(type='number', value='#{ticket.price}', name='price')
+            p 
+                button(type='submit') Update

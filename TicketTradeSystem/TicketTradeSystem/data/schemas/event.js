@@ -6,6 +6,7 @@ var eventSchema = new mongoose.Schema({
     date              : { type: String, required: true },
     time              : { type: String },
     location          : { type: String },
+    city              : { type: String },
     price             : { type: Number },
     pictureUrl        : { type: String },
     tags              : { type: String },
@@ -13,4 +14,4 @@ var eventSchema = new mongoose.Schema({
     userId            : { type: String }
 });
 
-module.exports = ticketSchema;
+module.exports = eventSchema;
