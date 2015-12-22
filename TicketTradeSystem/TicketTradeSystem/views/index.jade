@@ -1,11 +1,17 @@
 ﻿extends layout
 
 block content
-  h1= title
+    h1 #{title}
     p Welcome to #{title}
         br
-        a(href='/login') Login
+        a(href='/login') I already have an account
         br
-        a(href='/signup') Signup
+        a(href='/auth/facebook') I want to log in with Facebook
         br
-        a(href='/auth/facebook') Facebook
+        a(href='/signup') I want to make an account
+
+        if (messages)
+            if (messages.length > 0)
+                .alert.alert-dismissable.alert-danger
+                    button.close( type="button", data-dismiss="alert" ) x 
+                    | #{messages}

@@ -5,7 +5,11 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index', {title: 'Express'});
+    res.render('index', {title: 'TicketTrade', messages: req.flash('error')});
+});
+
+router.get('/test', function (req, res) {
+    res.render('test.jade');
 });
 
 router.get('/login', function (req, res) {

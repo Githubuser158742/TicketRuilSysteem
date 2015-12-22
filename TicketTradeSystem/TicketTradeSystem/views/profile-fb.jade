@@ -2,12 +2,12 @@
 
 block content
     h1 Profile
-    h2 Welcome #{user._id}
-    h3 #{user.facebook.name}
-    h4 #{user.facebook.email}
+    p Welcome #{user.facebook.name}!
     p
-            a(href='/tickets/') Overview Tickets
+            a(href='/tickets/') View all tickets
     p
-            a(href='/tickets/mytickets') View my tickets
+            a(href='/tickets/mytickets') My submitted tickets
+    p
+            a(href='#') Change my profile details
     p
             a(href='/logout') Logout

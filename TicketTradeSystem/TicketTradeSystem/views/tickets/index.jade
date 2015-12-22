@@ -2,13 +2,14 @@
 
 block content
     h1=title
-    p
-        a(href="/tickets/new") Add New Ticket
-    ul
+    a.btn.btn-primary(href="/tickets/new", style="margin-bottom: 10px;") Add new ticket
+    .row
         - for(var ticket in ticketslist) {
-        li
-            =ticketslist[ticket].name
-            br
-            p
-                a(href='/tickets/#{ticketslist[ticket]._id}') Show
+        .col-md-3
+            p 
+                b 
+                    =ticketslist[ticket].name
+            p  
+                    =ticketslist[ticket].description
+            a.btn.btn-info(href="/tickets/#{ticketslist[ticket]._id}") Show
         - };

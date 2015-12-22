@@ -1,0 +1,14 @@
+﻿extends layout
+
+block content
+    h1 Login
+    form(role='form',action='/login',method='post')
+        input(type='text',name='email',placeholder='email')
+        input(type='password',name='password',placeholder='password')
+        button(type='submit') Login
+
+    h1 Register
+        form(role='form',action='/signup',method='post')
+        input(type='text',name='email',placeholder='email')
+        input(type='password',name='password',placeholder='password')
+        button(type='submit') Signup

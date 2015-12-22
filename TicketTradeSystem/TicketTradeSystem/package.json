@@ -11,7 +11,9 @@
     "email": "jim.butseraen@student.howest.be"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.8.1",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.3.3",
     "debug": "~2.0.0",
     "express": "~4.9.0",
@@ -19,14 +21,13 @@
     "jade": "~1.6.0",
     "mongoose": "^4.3.0",
     "morgan": "~1.3.0",
-    "serve-favicon": "~2.1.3",
-    "socket.io": "^1.3.7",
-    "stylus": "0.42.3",
     "passport": "0.3.2",
-    "passport-local": "1.0.0",
     "passport-facebook": "2.0.0",
     "passport-google-oauth": "0.2.0",
+    "passport-local": "1.0.0",
     "passport-twitter": "1.0.3",
-    "bcrypt-nodejs": "0.0.3"
+    "serve-favicon": "~2.1.3",
+    "socket.io": "^1.3.7",
+    "stylus": "0.42.3"
   }
 }

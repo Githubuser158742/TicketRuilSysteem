@@ -45,6 +45,7 @@
     <Compile Include="data\schemas\user.js" />
     <Compile Include="routes\events.js" />
     <Compile Include="routes\index.js" />
+    <Compile Include="routes\middleware\isAuthenticated.js" />
     <Compile Include="routes\middleware\loadTicket.js" />
     <Compile Include="routes\tickets.js" />
     <Compile Include="bin\www" />
@@ -65,6 +66,7 @@
     <Content Include="views\profile-fb.jade" />
     <Content Include="views\profile.jade" />
     <Content Include="views\signup.jade" />
+    <Content Include="views\test.jade" />
     <Content Include="views\tickets\detail.jade" />
     <Content Include="views\tickets\edit.jade" />
     <Content Include="views\tickets\index.jade" />

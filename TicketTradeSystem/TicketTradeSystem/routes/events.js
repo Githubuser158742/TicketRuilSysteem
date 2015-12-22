@@ -5,13 +5,15 @@ var router = express.Router();
 var eventsRepo = require('../data/models/eventsRepo');
 //var loadEvent = require('./middleware/loadEvent.js');
 
+var isAuthenticated = require('./middleware/isAuthenticated.js');
+
 //nog vervangen door bovenstaande middleware
 var Event = require('../data/models/event');
 
 router.emitter = new (require('events').EventEmitter)();
 
 /* GET events listing. */
-router.get('/', function (req, res) {
+router.get('/', isAuthenticated, function (req, res) {
     eventsRepo.getAllEvents(function (err, events) {
         if (err) {
             res.status(500).send('server error - event overview');
