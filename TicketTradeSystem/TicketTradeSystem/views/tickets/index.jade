@@ -7,9 +7,19 @@ block content
         - for(var ticket in ticketslist) {
         .col-md-3
             p 
+                | Event ID: 
+                br
                 b 
-                    =ticketslist[ticket].name
-            p  
-                    =ticketslist[ticket].description
+                    =ticketslist[ticket].eventid
+                br
+                | Price:
+                br
+                b
+                    =ticketslist[ticket].price
+                br
+                | Amount: 
+                br
+                b
+                    =ticketslist[ticket].amount
             a.btn.btn-info(href="/tickets/#{ticketslist[ticket]._id}") Show
         - };

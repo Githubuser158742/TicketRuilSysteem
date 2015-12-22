@@ -3,7 +3,13 @@
 block content
     h1 New Ticket
     form(role='form',action='/tickets',method='post')
-        input(type='text',name='name',placeholder='name')
-        input(type='text',name='description',placeholder='description')
+        select(name='eventid')
+            - for (var item in eventslist) {
+                option(value="#{eventslist[item]._id}") #{eventslist[item].name}
+            - };
+        br
         input(type='number',name='price',placeholder='price')
+        br
+        input(type='number',name='amount',placeholder='amount')
+        br
         button(type='submit') Add Ticket

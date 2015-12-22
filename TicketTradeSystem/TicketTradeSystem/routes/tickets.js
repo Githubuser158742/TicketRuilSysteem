@@ -4,6 +4,7 @@ var router = express.Router();
 
 var ticketsRepo = require('../data/models/ticketsRepo');
 //var loadTicket = require('./middleware/loadTicket.js');
+var eventsRepo = require('../data/models/eventsRepo');
 
 //nog vervangen door bovenstaande middleware
 var Ticket = require('../data/models/ticket');
@@ -32,7 +33,13 @@ router.get('/mytickets', function (req, res) {
 });
 
 router.get('/new', function (req, res) {
-    res.render('tickets/new', {title: 'New Ticket'});
+    eventsRepo.getAllEvents(function (err, events) {
+        if (err) {
+            res.status(500).send('server error - new ticket');
+            res.end();
+        }
+        res.render('tickets/new', { title: 'New ticket', eventslist: events });
+    });
 });
 
 router.post('/', function (req, res, next) {

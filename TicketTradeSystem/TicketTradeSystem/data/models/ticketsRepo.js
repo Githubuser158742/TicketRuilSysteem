@@ -4,7 +4,7 @@
 var ticketsRepo = (function () {
     var Ticket = require('./ticket.js');
     var getAllTickets = function (next) {
-            Ticket.find({}).sort('name').exec(function (err, docs) {
+            Ticket.find({}).sort('price').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
