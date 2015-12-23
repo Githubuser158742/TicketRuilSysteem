@@ -15,13 +15,9 @@ router.get('/test', function (req, res) {
     res.render('test.jade');
 });
 
-<<<<<<< HEAD
-router.get('/login', function (req, res) {
-    res.render('login.jade', {title: 'Sign in', messages: req.flash('loginMessage')});
-=======
+
 router.get('/login', isNotAuthenticated, function (req, res) {
     res.render('login.jade', { title: 'Sign in', messages: req.flash('loginMessage') });
->>>>>>> origin/master
 });
 
 router.post('/login', passport.authenticate('local-login',{

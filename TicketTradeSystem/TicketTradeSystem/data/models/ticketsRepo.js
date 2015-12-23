@@ -4,16 +4,16 @@
 var ticketsRepo = (function () {
     var Ticket = require('./ticket.js');
     var getAllTickets = function (next) {
-            Ticket.find({}).sort('price').populate('_event _user').exec(function (err, docs) {
-                if (err) {
-                    console.log(err);
-                    next(err, null);
-                }
-                next(null, docs);
-            });
-        },
+        Ticket.find({}).sort('price').populate('_event _user').exec(function (err, docs) {
+            if (err) {
+                console.log(err);
+                next(err, null);
+            }
+            next(null, docs);
+        });
+    },
         getTicketsByIdUser = function (id, next) {
-            Ticket.find({_user: id}).sort('price').exec(function (err, docs) {
+            Ticket.find({ _user: id }).sort('price').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -21,19 +21,11 @@ var ticketsRepo = (function () {
                 next(null, docs);
             });
         },
-<<<<<<< HEAD
         createTicket = function (ticket, event, next) {
             event.save(function (err) {
                 if (err) {
                     next(err);
                 }
-=======
-        createTicket = function (ticket, next) {
-<<<<<<< HEAD
-=======
-                if (err) { next(err); }
->>>>>>> origin/master
->>>>>>> origin/master
                 var ticket1 = new Ticket({
                     price: ticket.price,
                     amount: ticket.amount,
@@ -47,6 +39,7 @@ var ticketsRepo = (function () {
                     }
                 });
                 next(ticket);
+            });
         };
     return {
         model: Ticket,
