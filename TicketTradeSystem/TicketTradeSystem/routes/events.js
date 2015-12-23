@@ -19,7 +19,7 @@ router.get('/', isAuthenticated, function (req, res) {
             res.status(500).send('server error - event overview');
             res.end();
         }
-        res.render('events/index', { title: 'Events overview', eventslist: events });
+        res.render('events/index', {title: 'Events overview', eventslist: events});
     });
 });
 
@@ -29,12 +29,12 @@ router.get('/myevents', function (req, res) {
             res.status(500).send('server error - events user');
             res.end();
         }
-        res.render('events/myevents', { title: 'My Events', eventslistuser: eventsuser });
+        res.render('events/myevents', {title: 'My Events', eventslistuser: eventsuser});
     });
 });
 
 router.get('/new', function (req, res) {
-    res.render('events/new', { title: 'New Event' });
+    res.render('events/new', {title: 'New Event'});
 });
 
 router.post('/', function (req, res, next) {
@@ -55,7 +55,7 @@ router.get('/:id', function (req, res) {
         if (err) {
             console.log('Error: ' + err);
         } else {
-            res.render('events/detail', { event: event });
+            res.render('events/detail', {event: event});
         }
     });
 });
@@ -65,7 +65,7 @@ router.get('/:id/edit', function (req, res) {
         if (err) {
             console.log('Error: ' + err);
         } else {
-            res.render('events/edit', { event: event });
+            res.render('events/edit', {event: event});
         }
     });
 });
@@ -80,7 +80,6 @@ router.post('/:id/edit', function (req, res) {
     var price = req.body.price;
     var pictureUrl = req.body.pictureUrl;
     var tags = req.body.tags;
-    
     Event.findById(req.params.id, function (err, event) {
         event.update({
             name: name,

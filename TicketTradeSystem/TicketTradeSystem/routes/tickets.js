@@ -38,7 +38,7 @@ router.get('/new', function (req, res) {
             res.status(500).send('server error - new ticket');
             res.end();
         }
-        res.render('tickets/new', { title: 'New ticket', eventslist: events });
+        res.render('tickets/new', {title: 'New ticket', eventslist: events});
     });
 });
 

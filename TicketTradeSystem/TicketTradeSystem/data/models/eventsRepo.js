@@ -4,16 +4,16 @@
 var eventsRepo = (function () {
     var Event = require('./event.js');
     var getAllEvents = function (next) {
-        Event.find({}).sort('name').exec(function (err, docs) {
-            if (err) {
+            Event.find({}).sort('name').exec(function (err, docs) {
+                if (err) {
                 console.log(err);
                 next(err, null);
-            }
-            next(null, docs);
-        });
-    },
+                }
+                next(null, docs);
+            });
+        },
         getEventsByCity = function (search, next) {
-            Event.find({ city: search }).sort('name').exec(function (err, docs) {
+            Event.find({city: search}).sort('name').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -23,7 +23,7 @@ var eventsRepo = (function () {
         },
 
         getEventsByIdUser = function (id, next) {
-            Event.find({ userId: id }).sort('name').exec(function (err, docs) {
+            Event.find({userId: id}).sort('name').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
