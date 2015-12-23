@@ -1,6 +1,7 @@
 ﻿"use strict";
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 var eventsRepo = require('../data/models/eventsRepo');
 //var loadEvent = require('./middleware/loadEvent.js');
