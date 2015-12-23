@@ -2,7 +2,7 @@
 var Ticket = require('../../data/models/ticket');
 
 function loadTicket(req, res, next) {
-    Ticket.findOne({name: req.params.name}, function (err, ticket) {
+    Ticket.findById({_id: req.params.id}, function (err, ticket) {
         if (err) {
             return next(err);
         }

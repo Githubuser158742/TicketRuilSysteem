@@ -4,7 +4,7 @@ var router = express.Router();
 var fs = require('fs');
 
 var eventsRepo = require('../data/models/eventsRepo');
-//var loadEvent = require('./middleware/loadEvent.js');
+var loadEvent = require('./middleware/loadEvent.js');
 
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 
@@ -50,25 +50,12 @@ router.post('/', function (req, res, next) {
     });
 });
 
-
-router.get('/:id', function (req, res) {
-    Event.findById(req.params.id, function (err, event) {
-        if (err) {
-            console.log('Error: ' + err);
-        } else {
-            res.render('events/detail', {event: event});
-        }
-    });
+router.get('/:id', loadEvent, function (req, res) {
+    res.render('events/detail', {event: req.event});
 });
 
-router.get('/:id/edit', function (req, res) {
-    Event.findById(req.params.id, function (err, event) {
-        if (err) {
-            console.log('Error: ' + err);
-        } else {
-            res.render('events/edit', {event: event});
-        }
-    });
+router.get('/:id/edit', loadEvent, function (req, res) {
+    res.render('events/edit', {event: req.event});
 });
 
 router.post('/:id/edit', function (req, res) {

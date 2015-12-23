@@ -47,6 +47,7 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\middleware\attachAuthenticationStatus.js" />
     <Compile Include="routes\middleware\isAuthenticated.js" />
+    <Compile Include="routes\middleware\loadEvent.js" />
     <Compile Include="routes\middleware\loadTicket.js" />
     <Compile Include="routes\tickets.js" />
     <Compile Include="bin\www" />
