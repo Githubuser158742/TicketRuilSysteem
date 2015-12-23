@@ -6,15 +6,13 @@ var async = require('async');
 var ticketsRepo = require('../data/models/ticketsRepo');
 var eventsRepo = require('../data/models/eventsRepo');
 
-var loadTicket = require('./middleware/loadTicket.js');
-var loadEventForTicketPost = require('./middleware/loadEventForTicketPost.js');
 //middleware
 var loadTicket = require('./middleware/loadTicket.js');
+var loadEventForTicketPost = require('./middleware/loadEventForTicketPost.js');
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 
 router.emitter = new(require('events').EventEmitter)();
 
-/* GET tickets listing. */
 router.get('/', isAuthenticated, function (req, res) {
     ticketsRepo.getAllTickets(function (err, tickets) {
         if (err) {
