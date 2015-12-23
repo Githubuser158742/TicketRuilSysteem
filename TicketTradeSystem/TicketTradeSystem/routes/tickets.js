@@ -4,8 +4,11 @@ var router = express.Router();
 var async = require('async');
 
 var ticketsRepo = require('../data/models/ticketsRepo');
-var loadTicket = require('./middleware/loadTicket.js');
 var eventsRepo = require('../data/models/eventsRepo');
+
+//middleware
+var loadTicket = require('./middleware/loadTicket.js');
+var isAuthenticated = require('./middleware/isAuthenticated.js');
 
 //nog vervangen door bovenstaande middleware
 var Ticket = require('../data/models/ticket');
@@ -14,7 +17,7 @@ var Event = require('../data/models/event');
 router.emitter = new(require('events').EventEmitter)();
 
 /* GET tickets listing. */
-router.get('/', function (req, res) {
+router.get('/', isAuthenticated, function (req, res) {
     ticketsRepo.getAllTickets(function (err, tickets) {
         if (err) {
             res.status(500).send('server error - tickets');

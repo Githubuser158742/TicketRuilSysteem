@@ -4,8 +4,9 @@ var router = express.Router();
 var fs = require('fs');
 
 var eventsRepo = require('../data/models/eventsRepo');
-var loadEvent = require('./middleware/loadEvent.js');
 
+//middleware
+var loadEvent = require('./middleware/loadEvent.js');
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 
 //nog vervangen door bovenstaande middleware
@@ -20,7 +21,7 @@ router.get('/', isAuthenticated, function (req, res) {
             res.status(500).send('server error - event overview');
             res.end();
         }
-        res.render('events/index', {title: 'Events overview', eventslist: events});
+        res.render('events/index', {title: 'Events', eventslist: events});
     });
 });
 
