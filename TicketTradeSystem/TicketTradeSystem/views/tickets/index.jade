@@ -6,14 +6,18 @@ block content
     .row
         - for(var ticket in ticketslist) {
         .col-md-3
-            img(src= ticketslist[ticket]._event.pictureUrl, style="width: 100%;")
+            div(style="background-image: url('"+ticketslist[ticket]._event.pictureUrl+"')", class="posterimg")
             p 
-                b 
+                h3 
                     =ticketslist[ticket]._event.name
-                br
+                p
+                    =ticketslist[ticket]._event.location
+                    |, 
+                    =ticketslist[ticket]._event.city
                 b 
                     i
-                        =ticketslist[ticket]._event.description
+                        #description
+                            =ticketslist[ticket]._event.description
             p
                 i 
                     =ticketslist[ticket]._user.local.firstname 

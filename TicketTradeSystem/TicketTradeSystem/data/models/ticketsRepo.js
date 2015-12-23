@@ -21,8 +21,7 @@ var ticketsRepo = (function () {
                 next(null, docs);
             });
         },
-        createTicket = function (ticket, event, next) {
-            event.save(function (err) {
+        createTicket = function (ticket, next) {
                 if (err) { next(err); }
                 var ticket1 = new Ticket({
                     price: ticket.price,
@@ -35,7 +34,6 @@ var ticketsRepo = (function () {
                     if (err) { next(err); }
                 });
                 next(ticket);
-            });
         };
     return {
         model: Ticket,

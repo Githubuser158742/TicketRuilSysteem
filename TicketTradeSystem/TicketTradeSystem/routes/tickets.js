@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
             res.status(500).send('server error - tickets');
             res.end();
         }
-        res.render('tickets/index', { title: 'Tickets overview', ticketslist: tickets });
+        res.render('tickets/index', { title: 'Tickets', ticketslist: tickets });
     });
 });
 
@@ -46,21 +46,13 @@ router.get('/new', function (req, res) {
 
 router.post('/', function (req, res, next) {
     req.body.userid = req._passport.session.user;
-    var event1;
-    Event.findById(req.body.eventid, function (err, event) {
-        if (err) {
-            next(err);
+    ticketsRepo.createTicket(req.body, function (next) {
+        if (next.errors) {
+            next(new Error(next.message));
         } else {
-            event1 = event;
-            ticketsRepo.createTicket(req.body, event1, function (next) {
-                if (next.errors) {
-                    next(new Error(next.message));
-                } else {
-                    router.emitter.emit('routermessage', req.body);
-                    res.redirect('/tickets');
-                }
-            });
-        };
+            router.emitter.emit('routermessage', req.body);
+            res.redirect('/tickets');
+        }
     });
 });
 
