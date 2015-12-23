@@ -2,20 +2,13 @@
 
 block content
     h1=title
-    a.btn.btn-primary(href="/events/new", style="margin-bottom: 10px;") Add new event
-    .row
+    p
+        a(href="/events/new") Add New Event
+    ul
         - for(var event in eventslist) {
-        .col-md-3
-            p 
-                | Event name: 
-                br
-                b 
-                    =eventslist[event].name
-                br
-                | Description:
-                br
-                b
-                    =eventslist[event].description
-                br
-            a.btn.btn-info(href="/events/#{eventslist[event]._id}") Show
+        li
+            =eventslist[event].name
+            br
+            p
+                a(href='/events/#{eventslist[event]._id}') Show
         - };
