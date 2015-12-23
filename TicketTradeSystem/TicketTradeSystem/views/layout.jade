@@ -22,24 +22,26 @@ html( lang="en" )
  
             #navbar-inverse.collapse.navbar-collapse
                 ul.nav.navbar-nav
-                    li(class=title=='Home'?'active':undefined)
-                        a(href="/") Home
                     - if (!isAuthenticated)
+                        li(class=title=='Welcome'?'active':undefined)
+                            a(href="/") Welcome
                         li(class=title=='Sign in'?'active':undefined)
                             a(href="/login") Sign in
                         li(class=title=='Sign up'?'active':undefined)
                             a(href="/signup") Sign up
                     - else
-                        li: a( href="/tickets" ) Tickets
-                        li: a( href="/events" ) Events
-                        li.dropdown
+                        li(class=title=='Tickets'?'active':undefined)
+                            a( href="/tickets" ) Tickets
+                        li(class=title=='Events'?'active':undefined)
+                            a( href="/events" ) Events
+                        li.dropdown(class=title=='Profile'?'active':undefined)
                             a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Profile
                                 span.caret
                             ul.dropdown-menu( role="menu" )
                                 li: a( href="/tickets/mytickets" ) Manage my tickets
                                 li.divider
                                 li.dropdown-header My profile
-                                li: a( href="#" ) Change details
+                                li: a( href="/profile" ) Change details
                                 li: a( href="/logout" ) Sign out
         .container
             block content

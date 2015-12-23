@@ -20,7 +20,7 @@ router.get('/login', isNotAuthenticated, function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local-login',{
-    successRedirect : '/profile',
+    successRedirect : '/tickets',
     failureRedirect : '/login',
     session: true
 }));

@@ -8,7 +8,7 @@ var eventSchema = new mongoose.Schema({
     city: {type: String},
     price: {type: Number},
     pictureUrl: {type: String},
-    tags: {type: String},
+    tags: [],
     createdOn: {type: Date, default: Date.now},
     userId: { type: String },
     tickets: [{ type: Schema.ObjectId, ref: 'Ticket' }]

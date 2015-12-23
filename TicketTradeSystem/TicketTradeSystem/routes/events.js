@@ -41,6 +41,8 @@ router.get('/new', function (req, res) {
 
 router.post('/', function (req, res, next) {
     req.body.userId = req._passport.session.user;
+    var tags = req.body.tags.split(", ");
+    req.body.tags = tags;
     eventsRepo.createEvent(req.body, function (next) {
         if (next.errors) {
             next(new Error(next.message));

@@ -1,24 +1,41 @@
-﻿extends ../layout
+﻿    
+extends ../layout
 
 block content
-    h1 New Event
+    h1 #{title}
     form(role='form',action='/events',method='post')
-        input(type='text',name='name',placeholder='name')
-        br
-        input(type='text',name='description',placeholder='description')
-        br
-        input(type='date',name='date',placeholder='date')
-        br
-        input(type='time',name='time',placeholder='time')
-        br
-        input(type='text',name='location',placeholder='location')
-        br
-        input(type='text',name='city',placeholder='city')
-        br
-        input(type='number',name='price',placeholder='price')
-        br
-        input(type='text',name='pictureUrl',placeholder='pictureUrl')
-        br
-        input(type='text',name='tags',placeholder='tags')
-        br
-        button(type='submit') Add Event
+        .form-group
+            label(for='name') Name:
+            input(type='text',name='name', class='form-control')
+        .form-group
+            label(for='description') Description:
+            textarea(name='description', class='form-control', rows='5')
+        .row
+            .col-md-6
+                .form-group
+                    label(for='date') Date:
+                    input(type='date',name='date', class='form-control')
+            .col-md-6
+                .form-group
+                    label(for='time') Start:
+                    input(type='time',name='time', class='form-control')
+        .row
+            .col-md-6
+                .form-group
+                    label(for='location') Venue:
+                    input(type='text',name='location', class='form-control')
+            .col-md-6
+                .form-group
+                    label(for='city') City:
+                    input(type='text',name='city', class='form-control')
+        label(for='price') Price:
+        .input-group
+            span(class='input-group-addon', id='price-addon') €
+            input(type='number',name='price', class='form-control', min='0', step='0.01', aria-describedby='price-addon')
+        .form-group
+            label(for='pictureUrl') Picture (URL):
+            input(type='text',name='pictureUrl', class='form-control')
+        .form-group
+            label(for='tags') Tags (split by comma):
+            input(type='text',name='tags', class='form-control')
+        button(type='submit', class='btn btn-default') Add Event

@@ -22,7 +22,6 @@ var ticketsRepo = (function () {
             });
         },
         createTicket = function (ticket, next) {
-                if (err) { next(err); }
                 var ticket1 = new Ticket({
                     price: ticket.price,
                     amount: ticket.amount,
