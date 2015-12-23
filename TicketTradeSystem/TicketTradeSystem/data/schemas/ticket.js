@@ -1,11 +1,10 @@
-﻿var mongoose = require('mongoose');
-
+﻿var mongoose = require('mongoose'), Schema = mongoose.Schema;
 var ticketSchema = new mongoose.Schema({
-    eventid: {type: String, required: true},
+    _event: { type: Schema.ObjectId, ref: 'Event' },
+    _user: { type: Schema.ObjectId, ref: 'User'},
     price: {type: Number},
     amount: {type: Number},
-    userid: {type: String, required: true},
-    createdOn: {type: Date, default: Date.now}
+    createdOn: { type: Date, default: Date.now }
 });
 
 module.exports = ticketSchema;

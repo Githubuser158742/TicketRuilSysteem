@@ -4,7 +4,7 @@
 var ticketsRepo = (function () {
     var Ticket = require('./ticket.js');
     var getAllTickets = function (next) {
-            Ticket.find({}).sort('price').exec(function (err, docs) {
+            Ticket.find({}).sort('price').populate('_event _user').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -21,12 +21,19 @@ var ticketsRepo = (function () {
                 next(null, docs);
             });
         },
-        createTicket = function (ticket, next) {
-            ticket.creationDate = new Date();
-            Ticket.create(ticket, function (err) {
-                if (err) {
-                    return next(err);
-                }
+        createTicket = function (ticket, event, next) {
+            event.save(function (err) {
+                if (err) { next(err); }
+                var ticket1 = new Ticket({
+                    price: ticket.price,
+                    amount: ticket.amount,
+                    createdOn: new Date(),
+                    _event: ticket.eventid,
+                    _user: ticket.userid
+                });
+                ticket1.save(function (err) {
+                    if (err) { next(err); }
+                });
                 next(ticket);
             });
         };

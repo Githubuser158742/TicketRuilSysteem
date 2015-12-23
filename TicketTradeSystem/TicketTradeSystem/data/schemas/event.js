@@ -1,5 +1,4 @@
-﻿var mongoose = require('mongoose');
-
+﻿var mongoose = require('mongoose'), Schema = mongoose.Schema;
 var eventSchema = new mongoose.Schema({
     name: {type: String, required: true},
     description: {type: String},
@@ -11,7 +10,8 @@ var eventSchema = new mongoose.Schema({
     pictureUrl: {type: String},
     tags: {type: String},
     createdOn: {type: Date, default: Date.now},
-    userId: {type: String}
+    userId: { type: String },
+    tickets: [{ type: Schema.ObjectId, ref: 'Ticket' }]
 });
 
 module.exports = eventSchema;

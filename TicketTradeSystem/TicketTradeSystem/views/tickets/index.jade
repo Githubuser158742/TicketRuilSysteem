@@ -4,9 +4,20 @@ block content
     h1=title
         a.btn.btn-primary(href="/tickets/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i> 
     .row
-        h2 eventslist
-        p
-            #{eventslist}
-        h2 ticketslist
-        p
-            #{ticketslist}
+        - for(var ticket in ticketslist) {
+        .col-md-3
+            img(src= ticketslist[ticket]._event.pictureUrl, style="width: 100%;")
+            p 
+                b 
+                    =ticketslist[ticket]._event.name
+                br
+                b 
+                    i
+                        =ticketslist[ticket]._event.description
+            p
+                i 
+                    =ticketslist[ticket]._user.local.firstname 
+                    | 
+                    =ticketslist[ticket]._user.local.lastname
+            a.btn.btn-info(href="/tickets/#{ticketslist[ticket]._id}") Show
+        - };

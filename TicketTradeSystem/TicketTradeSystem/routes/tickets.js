@@ -1,6 +1,7 @@
 ﻿"use strict";
 var express = require('express');
 var router = express.Router();
+var async = require('async');
 
 var ticketsRepo = require('../data/models/ticketsRepo');
 var loadTicket = require('./middleware/loadTicket.js');
@@ -19,19 +20,7 @@ router.get('/', function (req, res) {
             res.status(500).send('server error - tickets');
             res.end();
         }
-        var events = [];
-        for (var t in tickets) {
-            //eventsRepo.getEventByID(tickets[t].eventid, function (err, event) {
-            Event.findById(tickets[t].eventid, function (err, event) {
-                if (err) {
-                    console.log('Error: ' + err);
-                } else {
-                    console.log(event);
-                    events.push(event.name);
-                }                
-            });
-        };
-        res.render('tickets/index', { title: 'Tickets overview', ticketslist: tickets, eventslist: events });
+        res.render('tickets/index', { title: 'Tickets overview', ticketslist: tickets });
     });
 });
 
@@ -57,13 +46,21 @@ router.get('/new', function (req, res) {
 
 router.post('/', function (req, res, next) {
     req.body.userid = req._passport.session.user;
-    ticketsRepo.createTicket(req.body, function (next) {
-        if (next.errors) {
-            next(new Error(next.message));
+    var event1;
+    Event.findById(req.body.eventid, function (err, event) {
+        if (err) {
+            next(err);
         } else {
-            router.emitter.emit('routermessage', req.body);
-            res.redirect('/tickets');
-        }
+            event1 = event;
+            ticketsRepo.createTicket(req.body, event1, function (next) {
+                if (next.errors) {
+                    next(new Error(next.message));
+                } else {
+                    router.emitter.emit('routermessage', req.body);
+                    res.redirect('/tickets');
+                }
+            });
+        };
     });
 });
 

@@ -11,6 +11,7 @@
     "email": "jim.butseraen@student.howest.be"
   },
   "dependencies": {
+    "async": "^1.5.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.8.1",
     "connect-flash": "^0.1.1",

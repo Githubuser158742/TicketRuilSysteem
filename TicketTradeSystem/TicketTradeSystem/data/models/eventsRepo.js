@@ -4,12 +4,12 @@
 var eventsRepo = (function () {
     var Event = require('./event.js');
     var getAllEvents = function (next) {
-            Event.find({}).sort('name').exec(function (err, docs) {
+            Event.find({}).sort('name').exec(function (err, events) {
                 if (err) {
                 console.log(err);
                 next(err, null);
-                }
-                next(null, docs);
+            }
+            next(null, events);
             });
         },
         getEventsByCity = function (search, next) {
