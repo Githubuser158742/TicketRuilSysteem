@@ -4,12 +4,21 @@ block content
     h1 New Event
     form(role='form',action='/events',method='post')
         input(type='text',name='name',placeholder='name')
+        br
         input(type='text',name='description',placeholder='description')
+        br
         input(type='date',name='date',placeholder='date')
+        br
         input(type='time',name='time',placeholder='time')
+        br
         input(type='text',name='location',placeholder='location')
+        br
         input(type='text',name='city',placeholder='city')
+        br
         input(type='number',name='price',placeholder='price')
+        br
         input(type='text',name='pictureUrl',placeholder='pictureUrl')
+        br
         input(type='text',name='tags',placeholder='tags')
+        br
         button(type='submit') Add Event
