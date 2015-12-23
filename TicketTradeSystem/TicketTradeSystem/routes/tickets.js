@@ -8,6 +8,7 @@ var eventsRepo = require('../data/models/eventsRepo');
 
 //nog vervangen door bovenstaande middleware
 var Ticket = require('../data/models/ticket');
+var Event = require('../data/models/event');
 
 router.emitter = new(require('events').EventEmitter)();
 
@@ -20,11 +21,17 @@ router.get('/', function (req, res) {
         }
         var events = [];
         for (var t in tickets) {
-            eventsRepo.getEventByID(tickets[t].eventid, function (err, event) { 
-                events.push(event);
+            //eventsRepo.getEventByID(tickets[t].eventid, function (err, event) {
+            Event.findById(tickets[t].eventid, function (err, event) {
+                if (err) {
+                    console.log('Error: ' + err);
+                } else {
+                    console.log(event);
+                    events.push(event.name);
+                }                
             });
         };
-        res.render('tickets/index', {title: 'Tickets overview', ticketslist: tickets, eventslist: events});
+        res.render('tickets/index', { title: 'Tickets overview', ticketslist: tickets, eventslist: events });
     });
 });
 
