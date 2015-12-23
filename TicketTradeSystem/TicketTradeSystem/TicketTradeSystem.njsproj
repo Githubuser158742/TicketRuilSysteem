@@ -46,6 +46,7 @@
     <Compile Include="routes\events.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\middleware\attachAuthenticationStatus.js" />
+    <Compile Include="routes\middleware\isNotAuthenticated.js" />
     <Compile Include="routes\middleware\isAuthenticated.js" />
     <Compile Include="routes\middleware\loadEvent.js" />
     <Compile Include="routes\middleware\loadEventForTicketPost.js" />

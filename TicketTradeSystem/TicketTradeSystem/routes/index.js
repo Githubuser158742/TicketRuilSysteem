@@ -3,17 +3,25 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+var isAuthenticated = require('./middleware/isAuthenticated.js');
+var isNotAuthenticated = require('./middleware/isNotAuthenticated.js');
+
 /* GET home page. */
-router.get('/', function (req, res) {
-    res.render('index', {title: 'Home', messages: req.flash('error')});
+router.get('/', isNotAuthenticated, function (req, res) {
+    res.render('index', { title: 'Welcome', messages: req.flash('error') });
 });
 
 router.get('/test', function (req, res) {
     res.render('test.jade');
 });
 
+<<<<<<< HEAD
 router.get('/login', function (req, res) {
     res.render('login.jade', {title: 'Sign in', messages: req.flash('loginMessage')});
+=======
+router.get('/login', isNotAuthenticated, function (req, res) {
+    res.render('login.jade', { title: 'Sign in', messages: req.flash('loginMessage') });
+>>>>>>> origin/master
 });
 
 router.post('/login', passport.authenticate('local-login',{
@@ -32,9 +40,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/profile', function (req, res) {
-    res.render('profile.jade', {
-        user : req.user
-    });
+    res.render('profile.jade', { user : req.user, title: "Profile", messages: req.flash('error') });
 });
 
 router.get('/logout', function (req, res) {

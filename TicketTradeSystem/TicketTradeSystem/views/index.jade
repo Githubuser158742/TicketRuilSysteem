@@ -2,6 +2,11 @@
 
 block content
     h1 #{title}
+    if (messages)
+        if (messages.length > 0)
+            .alert.alert-dismissable.alert-danger
+                button.close( type="button", data-dismiss="alert" ) x 
+                | #{messages}
     p Welcome to TicketTrade
         br
         a(href='/login') <i class="fa fa-user"></i> I already have an account
@@ -9,9 +14,3 @@ block content
         a(href='/auth/facebook') <i class="fa fa-facebook-official"></i> I want to sign in with Facebook
         br
         a(href='/signup') <i class="fa fa-pencil-square-o"></i> I want to make an account
-
-        if (messages)
-            if (messages.length > 0)
-                .alert.alert-dismissable.alert-danger
-                    button.close( type="button", data-dismiss="alert" ) x 
-                    | #{messages}

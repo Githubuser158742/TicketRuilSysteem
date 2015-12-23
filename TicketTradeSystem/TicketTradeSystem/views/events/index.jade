@@ -2,20 +2,21 @@
 
 block content
     h1=title
-    a.btn.btn-primary(href="/events/new", style="margin-bottom: 10px;") Add new event
+        a.btn.btn-primary(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i> 
     .row
         - for(var event in eventslist) {
         .col-md-3
+            div(style="background-image: url('"+eventslist[event].pictureUrl+"')", class="posterimg")
             p 
-                | Event name: 
-                br
-                b 
+                h3 
                     =eventslist[event].name
-                br
-                | Description:
-                br
-                b
-                    =eventslist[event].description
-                br
+                p
+                    =eventslist[event].location
+                    |, 
+                    =eventslist[event].city
+                b 
+                    i
+                        #description
+                            =eventslist[event].description
             a.btn.btn-info(href="/events/#{eventslist[event]._id}") Show
         - };

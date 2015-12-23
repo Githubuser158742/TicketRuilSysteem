@@ -2,7 +2,17 @@
 
 block content
     h1 #{title}
-    p Welcome #{user.local.firstname}!
+    if (messages)
+        if (messages.length > 0)
+            .alert.alert-dismissable.alert-danger
+                button.close( type="button", data-dismiss="alert" ) x 
+                | #{messages}
+    p Welcome 
+        b #{user.local.firstname} #{user.local.lastname}!
+    - if (user.admin)
+       .alert.alert-dismissable.alert-info
+                button.close( type="button", data-dismiss="alert" ) x 
+                | You're an administrator!
     p
             a(href='/tickets/') View all tickets
     p

@@ -6,21 +6,36 @@ var async = require('async');
 var ticketsRepo = require('../data/models/ticketsRepo');
 var eventsRepo = require('../data/models/eventsRepo');
 
+<<<<<<< HEAD
 var loadTicket = require('./middleware/loadTicket.js');
 var loadEventForTicketPost = require('./middleware/loadEventForTicketPost.js');
+=======
+//middleware
+var loadTicket = require('./middleware/loadTicket.js');
+var isAuthenticated = require('./middleware/isAuthenticated.js');
+>>>>>>> origin/master
 
 //nog vervangen door bovenstaande middleware
 var Event = require('../data/models/event');
 
 router.emitter = new(require('events').EventEmitter)();
 
+<<<<<<< HEAD
 router.get('/', function (req, res) {
+=======
+/* GET tickets listing. */
+router.get('/', isAuthenticated, function (req, res) {
+>>>>>>> origin/master
     ticketsRepo.getAllTickets(function (err, tickets) {
         if (err) {
             res.status(500).send('server error - tickets');
             res.end();
         }
+<<<<<<< HEAD
         res.render('tickets/index', {title: 'Tickets overview', ticketslist: tickets});
+=======
+        res.render('tickets/index', { title: 'Tickets', ticketslist: tickets });
+>>>>>>> origin/master
     });
 });
 
@@ -46,7 +61,11 @@ router.get('/new', function (req, res) {
 
 router.post('/', loadEventForTicketPost, function (req, res, next) {
     req.body.userid = req._passport.session.user;
+<<<<<<< HEAD
     ticketsRepo.createTicket(req.body, req.event, function (next) {
+=======
+    ticketsRepo.createTicket(req.body, function (next) {
+>>>>>>> origin/master
         if (next.errors) {
             next(new Error(next.message));
         } else {
