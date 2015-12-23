@@ -10,8 +10,8 @@ var eventSchema = new mongoose.Schema({
     pictureUrl: {type: String},
     tags: {type: String},
     createdOn: {type: Date, default: Date.now},
-    userId: { type: String },
-    tickets: [{ type: Schema.ObjectId, ref: 'Ticket' }]
+    userId: {type: String},
+    tickets: [{type: Schema.ObjectId, ref: 'Ticket'}]
 });
 
 module.exports = eventSchema;

@@ -13,7 +13,7 @@ var ticketsRepo = (function () {
             });
         },
         getTicketsByIdUser = function (id, next) {
-            Ticket.find({userid: id}).sort('name').exec(function (err, docs) {
+            Ticket.find({_user: id}).sort('price').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -23,7 +23,9 @@ var ticketsRepo = (function () {
         },
         createTicket = function (ticket, event, next) {
             event.save(function (err) {
-                if (err) { next(err); }
+                if (err) {
+                    next(err);
+                }
                 var ticket1 = new Ticket({
                     price: ticket.price,
                     amount: ticket.amount,
@@ -32,7 +34,9 @@ var ticketsRepo = (function () {
                     _user: ticket.userid
                 });
                 ticket1.save(function (err) {
-                    if (err) { next(err); }
+                    if (err) {
+                        next(err);
+                    }
                 });
                 next(ticket);
             });

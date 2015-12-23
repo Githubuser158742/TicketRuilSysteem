@@ -8,9 +8,11 @@ block content
         .col-md-3
             p 
                 b 
-                    =ticketslistuser[ticket].name
+                    =ticketslistuser[ticket]._id
             p  
-                    =ticketslistuser[ticket].description
+                    =ticketslistuser[ticket].amount
+            p
+                    =ticketslistuser[ticket].price
             a.btn.btn-info(href="/tickets/#{ticketslistuser[ticket]._id}") Show
             br
             a.btn.btn-warning(href="/tickets/#{ticketslistuser[ticket]._id}/edit") Edit
