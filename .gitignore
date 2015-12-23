@@ -209,3 +209,4 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+TicketTradeSystem/TicketTradeSystem/routes/events.js
