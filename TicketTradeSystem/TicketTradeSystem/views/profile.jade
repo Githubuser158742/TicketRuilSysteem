@@ -1,8 +1,8 @@
 ﻿extends layout
 
 block content
-    h1 Profile
-    p Welcome #{user.local.email}!
+    h1 #{title}
+    p Welcome #{user.local.firstname}!
     p
             a(href='/tickets/') View all tickets
     p

@@ -5,7 +5,7 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index', {title: 'TicketTrade', messages: req.flash('error')});
+    res.render('index', {title: 'Home', messages: req.flash('error')});
 });
 
 router.get('/test', function (req, res) {
@@ -13,21 +13,22 @@ router.get('/test', function (req, res) {
 });
 
 router.get('/login', function (req, res) {
-    res.render('login.jade');
+    res.render('login.jade', { title: 'Sign in', messages: req.flash('loginMessage') });
 });
 
 router.post('/login', passport.authenticate('local-login',{
     successRedirect : '/profile',
-    failureRedirect : '/login'}));
+    failureRedirect : '/login',
+    session: true
+}));
 
 router.get('/signup', function (req, res) {
-    res.render('signup.jade');
+    res.render('signup.jade', { title: 'Sign up' });
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/profile',
-    failureRedirect : '/signup',
-    session: true
+    failureRedirect : '/signup'
 }));
 
 router.get('/profile', function (req, res) {

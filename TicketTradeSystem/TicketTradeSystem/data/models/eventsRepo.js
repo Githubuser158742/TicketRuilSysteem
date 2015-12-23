@@ -21,7 +21,15 @@ var eventsRepo = (function () {
                 next(null, docs);
             });
         },
-
+        getEventByID = function (search, next) {
+            Event.findOne({ '_id' : search }, function (err, event) {
+                if (err) {
+                    console.log(err);
+                    next(err, null);
+                }
+                next(null, event);
+            });
+        },
         getEventsByIdUser = function (id, next) {
             Event.find({userId: id}).sort('name').exec(function (err, docs) {
                 if (err) {
@@ -44,6 +52,7 @@ var eventsRepo = (function () {
         model: Event,
         getAllEvents: getAllEvents,
         getEventsByCity: getEventsByCity,
+        getEventByID : getEventByID,
         getEventsByIdUser: getEventsByIdUser,
         createEvent: createEvent
     };

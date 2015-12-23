@@ -15,10 +15,16 @@ router.emitter = new(require('events').EventEmitter)();
 router.get('/', function (req, res) {
     ticketsRepo.getAllTickets(function (err, tickets) {
         if (err) {
-            res.status(500).send('server error - ticket overview');
+            res.status(500).send('server error - tickets');
             res.end();
         }
-        res.render('tickets/index', {title: 'Tickets overview', ticketslist: tickets});
+        var events = [];
+        for (var t in tickets) {
+            eventsRepo.getEventByID(tickets[t].eventid, function (err, event) { 
+                events.push(event);
+            });
+        };
+        res.render('tickets/index', {title: 'Tickets overview', ticketslist: tickets, eventslist: events});
     });
 });
 
