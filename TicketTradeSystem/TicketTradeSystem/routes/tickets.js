@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 var ticketsRepo = require('../data/models/ticketsRepo');
-//var loadTicket = require('./middleware/loadTicket.js');
+var loadTicket = require('./middleware/loadTicket.js');
 var eventsRepo = require('../data/models/eventsRepo');
 
 //nog vervangen door bovenstaande middleware
@@ -68,35 +68,33 @@ router.post('/', function (req, res, next) {
 });
 
 
-router.get('/:id', function (req, res) {
-    Ticket.findById(req.params.id, function (err, ticket) {
-        if (err) {
-            console.log('Error: ' + err);
-        } else {
-            res.render('tickets/detail', {ticket: ticket});
-        }
-    });
+//router.get('/:id', function (req, res){
+//    Ticket.findById(req.params.id, function (err, ticket) {
+//        if (err) {
+//            console.log('Error: ' + err);
+//        } else {
+//            res.render('tickets/detail', {ticket: ticket});
+//        }
+//    });
+//});
+
+router.get('/:id', loadTicket, function (req, res) {
+    res.render('tickets/detail', { ticket: req.ticket });
 });
 
-router.get('/:id/edit', function (req, res) {
-    Ticket.findById(req.params.id, function (err, ticket) {
-        if (err) {
-            console.log('Error: ' + err);
-        } else {
-            res.render('tickets/edit', {ticket: ticket});
-        }
-    });
+router.get('/:id/edit',loadTicket, function (req, res) {
+    res.render('tickets/edit', {ticket: req.ticket});
 });
 
 router.post('/:id/edit', function (req, res) {
     var name = req.body.name;
-    var description = req.body.description;
+    var amount = req.body.amount;
     var price = req.body.price;
 
     Ticket.findById(req.params.id, function (err, ticket) {
         ticket.update({
             name: name,
-            description: description,
+            amount: amount,
             price: price
         }, function (err) {
             if (err) {
