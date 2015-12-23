@@ -32,7 +32,7 @@ module.exports = function (passport) {
         process.nextTick(function () {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email': email }, function (err, user) {
+            User.findOne({'local.email': email}, function (err, user) {
                 // if there are any errors, return the error
                 if (err) {
                     return done(err);
@@ -73,7 +73,7 @@ module.exports = function (passport) {
         // callback with email and password from our form
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email': email }, function (err, user) {
+        User.findOne({'local.email': email}, function (err, user) {
             // if there are any errors, return the error before anything else
             if (err) {
                 return done(err);
@@ -103,7 +103,7 @@ module.exports = function (passport) {
         // asynchronous
         process.nextTick(function () {
             // find the user in the database based on their facebook id
-            User.findOne({ 'facebook.id': profile.id }, function (err, user) {
+            User.findOne({'facebook.id': profile.id}, function (err, user) {
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
                 if (err) {

@@ -15,8 +15,13 @@ router.get('/test', function (req, res) {
     res.render('test.jade');
 });
 
+<<<<<<< HEAD
+router.get('/login', function (req, res) {
+    res.render('login.jade', {title: 'Sign in', messages: req.flash('loginMessage')});
+=======
 router.get('/login', isNotAuthenticated, function (req, res) {
     res.render('login.jade', { title: 'Sign in', messages: req.flash('loginMessage') });
+>>>>>>> origin/master
 });
 
 router.post('/login', passport.authenticate('local-login',{
@@ -67,6 +72,5 @@ function isLoggedIn(req, res, next) { // if user is authenticated in the session
     // if they aren't redirect them to the home page
     res.redirect('/');
 };
-
 
 module.exports = router;

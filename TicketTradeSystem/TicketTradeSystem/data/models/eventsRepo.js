@@ -6,10 +6,10 @@ var eventsRepo = (function () {
     var getAllEvents = function (next) {
             Event.find({}).sort('name').exec(function (err, events) {
                 if (err) {
-                console.log(err);
-                next(err, null);
-            }
-            next(null, events);
+                    console.log(err);
+                    next(err, null);
+                }
+                next(null, events);
             });
         },
         getEventsByCity = function (search, next) {
@@ -22,7 +22,7 @@ var eventsRepo = (function () {
             });
         },
         getEventByID = function (search, next) {
-            Event.findOne({ '_id' : search }, function (err, event) {
+            Event.findOne({_id: search}, function (err, event) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -52,7 +52,7 @@ var eventsRepo = (function () {
         model: Event,
         getAllEvents: getAllEvents,
         getEventsByCity: getEventsByCity,
-        getEventByID : getEventByID,
+        getEventByID: getEventByID,
         getEventsByIdUser: getEventsByIdUser,
         createEvent: createEvent
     };

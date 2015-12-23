@@ -9,10 +9,7 @@ var eventsRepo = require('../data/models/eventsRepo');
 var loadEvent = require('./middleware/loadEvent.js');
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 
-//nog vervangen door bovenstaande middleware
-var Event = require('../data/models/event');
-
-router.emitter = new (require('events').EventEmitter)();
+router.emitter = new(require('events').EventEmitter)();
 
 /* GET events listing. */
 router.get('/', isAuthenticated, function (req, res) {
@@ -61,55 +58,49 @@ router.get('/:id/edit', loadEvent, function (req, res) {
     res.render('events/edit', {event: req.event});
 });
 
-router.post('/:id/edit', function (req, res) {
-    var name = req.body.name;
-    var description = req.body.description;
-    var date = req.body.date;
-    var time = req.body.time;
-    var location = req.body.location;
-    var city = req.body.city;
-    var price = req.body.price;
-    var pictureUrl = req.body.pictureUrl;
-    var tags = req.body.tags;
-    Event.findById(req.params.id, function (err, event) {
-        event.update({
-            name: name,
-            description: description,
-            date: date,
-            time: time,
-            location: location,
-            city: city,
-            price: price,
-            pictureUrl: pictureUrl,
-            tags: tags
-        }, function (err) {
-            if (err) {
-                res.send('Update failed' + err);
-            } else {
-                res.format({
-                    html: function () {
-                        res.redirect('/events/' + event._id);
-                    }
-                });
-            }
-        });
+router.post('/:id/edit', loadEvent, function (req, res) {
+    var name = req.body.name,
+        description = req.body.description,
+        date = req.body.date,
+        time = req.body.time,
+        location = req.body.location,
+        city = req.body.city,
+        price = req.body.price,
+        pictureUrl = req.body.pictureUrl,
+        tags = req.body.tags;
+
+    req.event.update({
+        name: name,
+        description: description,
+        date: date,
+        time: time,
+        location: location,
+        city: city,
+        price: price,
+        pictureUrl: pictureUrl,
+        tags: tags
+    }, function (err) {
+        if (err) {
+            res.send('Update failed' + err);
+        } else {
+            res.format({
+                html: function () {
+                    res.redirect('/events/' + req.event._id);
+                }
+            });
+        }
     });
 });
 
-router.get('/:id/delete', function (req, res) {
-    Event.findById(req.params.id, function (err, event) {
+router.get('/:id/delete', loadEvent, function (req, res) {
+    req.event.remove(function (err) {
         if (err) {
             return console.error(err);
         }
-        event.remove(function (err) {
-            if (err) {
-                return console.error(err);
+        res.format({
+            html: function () {
+                res.redirect('/events');
             }
-            res.format({
-                html: function () {
-                    res.redirect('/events');
-                }
-            });
         });
     });
 });
