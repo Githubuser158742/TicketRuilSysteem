@@ -5,45 +5,84 @@ html( lang="en" )
         meta( charset='utf-8' )
         meta( http-equiv='X-UA-Compatible', content='IE=edge' )
         meta( name='viewport', content='width=device-width, initial-scale=1.0' )
-        meta( name='description', content='TicketTradeSystem' )
-        //- Bootswatch Theme
-        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+        meta( name='description', content='TicketTrade' )
         link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel="stylesheet")
+        link(href="/stylesheets/bootstrap.css", rel="stylesheet")
+        link(href="/stylesheets/pe-icon-7-stroke.css", rel="stylesheet")
+        link(href="/stylesheets/ct-navbar.css", rel="stylesheet")   
         link(href="/stylesheets/style.css", rel="stylesheet")
+        link(href='http://fonts.googleapis.com/css?family=Grand+Hotel', rel='stylesheet')
     body
-        nav.navbar.navbar-default( role="navigation" )
-            .navbar-header
-                button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#navbar-inverse", aria-expanded="false", aria-controls="navbar")
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href="#") TicketTrade
- 
-            #navbar-inverse.collapse.navbar-collapse
-                ul.nav.navbar-nav
-                    - if (!isAuthenticated)
-                        li(class=title=='Welcome'?'active':undefined)
-                            a(href="/") Welcome
-                        li(class=title=='Sign in'?'active':undefined)
-                            a(href="/login") Sign in
-                        li(class=title=='Sign up'?'active':undefined)
-                            a(href="/signup") Sign up
-                    - else
-                        li(class=title=='Tickets'?'active':undefined)
-                            a( href="/tickets" ) Tickets
-                        li(class=title=='Events'?'active':undefined)
-                            a( href="/events" ) Events
-                        li.dropdown(class=title=='Profile'|title=='My Tickets'?'active':undefined)
-                            a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Profile
-                                span.caret
-                            ul.dropdown-menu( role="menu" )
-                                li: a( href="/tickets/mytickets" ) Manage my tickets
-                                li.divider
-                                li.dropdown-header My profile
-                                li: a( href="/profile" ) Change details
-                                li: a( href="/logout" ) Sign out
-        .container
-            block content
-        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
-        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+        #navbar-full
+            #navbar
+                nav.navbar.navbar-ct-blue(role="navigation", class=title=='Welcome'?'navbar-fixed-top navbar-transparent':undefined)
+                    .container
+                        .navbar-header
+                            button.navbar-toggle(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1")
+                                span.sr-only Toggle navigation
+                                span.icon-bar
+                                span.icon-bar
+                                span.icon-bar
+                            a.navbar-brand.navbar-brand-logo(href="#")
+                                .logo
+                                    img(src="/images/icon.png")
+                                //.brand TicketTrade
+                        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                            ul.nav.navbar-nav.navbar-right
+                                - if (isAuthenticated) {
+                                li
+                                    a.hidden-xs(href="javascript:void(0);", data-toggle="search")
+                                        i.pe-7s-search
+                                        p Search
+                                li(class=title=='Tickets'?'active':undefined)
+                                    a(href="/tickets")
+                                        i.pe-7s-ticket
+                                        p Tickets
+                                li(class=title=='Events'?'active':undefined)
+                                    a(href="/events")
+                                        i.pe-7s-date
+                                        p Events
+                                li(class=title=='Messages'?'active':undefined)
+                                    a(href="#")
+                                        i.pe-7s-mail
+                                        span.label 23
+                                        p Messages
+                                li.dropdown
+                                    a.dropdown-toggle(href="#", data-toggle="dropdown")
+                                        i.pe-7s-user
+                                        p Account
+                                            b.caret
+                                    ul.dropdown-menu
+                                        li
+                                            a(href="/profile") Edit Account
+                                        li
+                                            a(href="/logout") Logout
+                                - }
+                                - else {
+                                li(class=title=='Sign in'?'active':undefined)
+                                    a(href="/login")
+                                        i.pe-7s-users
+                                        p Sign in
+                                li(class=title=='Sign up'?'active':undefined)
+                                    a(href="/signup")
+                                        i.pe-7s-add-user
+                                        p Sign up
+                                - }
+                            form.navbar-form.navbar-right.navbar-search-form(role="search")
+                                .form-group
+                                    input.form-control(type="text", value="", placeholder="Search...")
+                - if (title=="Welcome") {
+                .blurred-container
+                    .img-src(style="background-image: url('images/bg.jpg')")
+        .main
+            .container
+                block content
+                - }
+                - else {
+        .main
+            .container
+                block content                
+                - }
+        script(src="/javascripts/jquery-1.10.2.js") 
+        script(src="/javascripts/bootstrap.js")
+        script(src="/javascripts/ct-navbar.js")

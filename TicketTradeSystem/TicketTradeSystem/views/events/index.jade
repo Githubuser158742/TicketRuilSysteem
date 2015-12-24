@@ -2,9 +2,11 @@
 
 block content
     h1=title
-        a.btn.btn-primary(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i> 
-    .row
+        a.btn.btn-default(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i> 
         - for(var event in eventslist) {
+    - if (event % 4 === 0 || event == 0) {
+    .row
+    - }
         .col-md-3
             div(style="background-image: url('"+eventslist[event].pictureUrl+"')", class="posterimg")
             p 

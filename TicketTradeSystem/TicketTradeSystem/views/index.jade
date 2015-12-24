@@ -1,16 +1,21 @@
 ﻿extends layout
 
 block content
-    h1 #{title}
     if (messages)
         if (messages.length > 0)
             .alert.alert-dismissable.alert-danger
                 button.close( type="button", data-dismiss="alert" ) x 
                 | #{messages}
-    p Welcome to TicketTrade
+    
+    h1.text-center
+        | Welcome to 
         br
-        a(href='/login') <i class="fa fa-user"></i> I already have an account
-        br
-        a(href='/auth/facebook') <i class="fa fa-facebook-official"></i> I want to sign in with Facebook
-        br
-        a(href='/signup') <i class="fa fa-pencil-square-o"></i> I want to make an account
+        | TicketTrade!
+        small.subtitle
+            | Your number 1 solution to sell your tickets for an event!
+        p
+            a(href='/login') <i class="fa fa-user"></i> I already have an account
+        p 
+            a(href='/auth/facebook') <i class="fa fa-facebook-official"></i> I want to sign in with Facebook
+        p        
+            a(href='/signup') <i class="fa fa-pencil-square-o"></i> I want to make an account
