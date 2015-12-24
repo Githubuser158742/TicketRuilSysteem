@@ -1,7 +1,11 @@
 ﻿extends ../layout
 
 block content
-    h1=title
-    h2 #{ticket._id}
-    h2 #{ticket.amount}
-    h3 #{ticket.price}
+    .row
+        .col-md-12
+            h1=title
+            h2 #{ticket._event.name}
+            h2 #{ticket.amount}
+            h3 #{ticket.price}  
+            p
+                #{ticket._event.tags}

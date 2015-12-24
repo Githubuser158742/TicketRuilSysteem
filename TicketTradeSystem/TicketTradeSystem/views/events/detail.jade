@@ -2,7 +2,11 @@
 
 block content
     h1=title
-    h2 #{event._id}
-    h2 #{event.name}
-    h3 #{event.description}
-    h3 #{event.price}
+    h2 #{event.location}, #{event.city}
+    h3 #{event.date} - #{event.time}
+    div(style="background-image: url('"+event.pictureUrl+"')", class="posterimg event")
+    p 
+        b € !{parseFloat(Math.round(event.price * 100) / 100).toFixed(2)}
+    p.description.event !{event.description.replace(/\n/g, '<br/>')}
+    each val in event.tags
+        span.tag=val

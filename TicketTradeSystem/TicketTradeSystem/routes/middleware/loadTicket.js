@@ -11,7 +11,7 @@ function loadTicket(req, res, next) {
         }
         req.ticket = ticket;
         next();
-    });
+    }).populate('_event _user');
 }
 
 module.exports = loadTicket;

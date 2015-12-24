@@ -19,7 +19,7 @@ router.get('/', isAuthenticated, function (req, res) {
             res.status(500).send('server error - tickets');
             res.end();
         }
-        res.render('tickets/index', {title: 'Tickets overview', ticketslist: tickets});
+        res.render('tickets/index', {title: 'Tickets', ticketslist: tickets, currentuser: req._passport.session});
     });
 });
 
@@ -56,11 +56,11 @@ router.post('/', loadEventForTicketPost, function (req, res, next) {
 });
 
 router.get('/:id', loadTicket, function (req, res) {
-    res.render('tickets/detail', {ticket: req.ticket});
+    res.render('tickets/detail', {ticket: req.ticket, title: req.ticket._event.name});
 });
 
 router.get('/:id/edit', loadTicket, function (req, res) {
-    res.render('tickets/edit', {ticket: req.ticket});
+    res.render('tickets/edit', {ticket: req.ticket, title: "Edit ticket"});
 });
 
 router.post('/:id/edit', loadTicket, function (req, res) {

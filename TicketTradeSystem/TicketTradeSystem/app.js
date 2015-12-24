@@ -14,7 +14,6 @@ var events = require('./routes/events');
 var attachAuthenticationStatus = require('./routes/middleware/attachAuthenticationStatus.js');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -26,7 +25,8 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // passport
 app.use(session({
     secret: 'ticketing',
