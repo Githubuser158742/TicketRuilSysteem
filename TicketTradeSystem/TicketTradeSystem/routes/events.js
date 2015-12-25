@@ -51,7 +51,6 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', loadEvent, function (req, res) {
-    console.log(req.event.tags);
     res.render('events/detail', {event: req.event, title: req.event.name});
 });
 
@@ -93,16 +92,17 @@ router.post('/:id/edit', loadEvent, function (req, res) {
     });
 });
 
-router.get('/:id/delete', loadEvent, function (req, res) {
-    req.event.remove(function (err) {
+router.get('/:id/delete', loadEvent, function (req, res) {    
+    req.event.update({ eventCancelled: true }, function (err) {
         if (err) {
-            return console.error(err);
+            res.send('Delete failed' + err);
+        } else {
+            res.format({
+                html: function () {
+                    res.redirect('/events');
+                }
+            });
         }
-        res.format({
-            html: function () {
-                res.redirect('/events');
-            }
-        });
     });
 });
 

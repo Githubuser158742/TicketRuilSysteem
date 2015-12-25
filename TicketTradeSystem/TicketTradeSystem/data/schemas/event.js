@@ -11,7 +11,8 @@ var eventSchema = new mongoose.Schema({
     tags: [],
     createdOn: {type: Date, default: Date.now},
     userId: {type: String},
-    tickets: [{type: Schema.ObjectId, ref: 'Ticket'}]
+    tickets: [{ type: Schema.ObjectId, ref: 'Ticket' }],
+    eventCancelled: { type: Boolean, default: false }
 });
 
 module.exports = eventSchema;

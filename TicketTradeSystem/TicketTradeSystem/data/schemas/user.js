@@ -27,8 +27,8 @@ var userSchema = new mongoose.Schema({
         token: String,
         email: String,
         name: String
-    },
-    admin: {type: Boolean, default: false },
+    },    
+    admin: { type: Boolean, default: false },
     createdOn: {type: Date, default: Date.now}
 });
 

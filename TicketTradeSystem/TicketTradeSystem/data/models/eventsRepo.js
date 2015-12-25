@@ -4,7 +4,7 @@
 var eventsRepo = (function () {
     var Event = require('./event.js');
     var getAllEvents = function (next) {
-            Event.find({}).sort('name').exec(function (err, events) {
+            Event.find({eventCancelled:false}).sort('name').exec(function (err, events) {
                 if (err) {
                     console.log(err);
                     next(err, null);

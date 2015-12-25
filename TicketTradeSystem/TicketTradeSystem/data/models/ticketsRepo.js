@@ -9,7 +9,13 @@ var ticketsRepo = (function () {
                 console.log(err);
                 next(err, null);
             }
-            next(null, docs);
+            console.log(docs);
+            var docs2 = [];
+            docs.forEach(function (doc) { 
+                if (doc._event.eventCancelled == false) { docs2.push(doc); }
+            });
+            console.log(docs2);
+            next(null, docs2);
         });
     },
         getTicketsByIdUser = function (id, next) {
@@ -22,23 +28,27 @@ var ticketsRepo = (function () {
             });
         },
         createTicket = function (ticket, event, next) {
+            var ticket1 = new Ticket({
+                price: ticket.price,
+                amount: ticket.amount,
+                createdOn: new Date(),
+                _event: ticket.eventid,
+                _user: ticket.userid
+            });
+            event.tickets.push(ticket1);
             event.save(function (err) {
                 if (err) {
                     next(err);
                 }
-                var ticket1 = new Ticket({
-                    price: ticket.price,
-                    amount: ticket.amount,
-                    createdOn: new Date(),
-                    _event: ticket.eventid,
-                    _user: ticket.userid
-                });
                 ticket1.save(function (err) {
                     if (err) {
                         next(err);
                     }
                 });
-                next(ticket);
+                // NEXT IS NOT A FUNCTION
+                // COMMENTING THIS RESULTS IN THE WEBSITE WAITING/"HANGING"
+                // FOR FURTHER TEMPORARY DEBUGGING PURPOSES, LEAVE THIS AS IS AND CLICK ON 'TICKETS' LINK TO SIMULATE A REACTION
+                // next(ticket);
             });
         };
     return {
