@@ -36,7 +36,24 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/profile', function (req, res) {
+    console.log(req.user);
     res.render('profile.jade', { user : req.user, title: "Profile", messages: req.flash('error') });
+});
+
+router.post('/profile', function (req, res) {
+    var user = req.body;
+    user.save(function (err) {
+        if (err) return next(err)
+        // What's happening in passport's session? Check a specific field...
+        console.log("Before relogin: " + req.session.passport.user.changedField)
+        
+        req.login(user, function (err) {
+            if (err) return next(err)
+            
+            console.log("After relogin: " + req.session.passport.user.changedField)
+            res.send(200)
+        })
+    })
 });
 
 router.get('/logout', function (req, res) {

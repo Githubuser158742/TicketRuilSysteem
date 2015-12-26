@@ -13,13 +13,13 @@ router.emitter = new(require('events').EventEmitter)();
 
 /* GET events listing. */
 router.get('/', isAuthenticated, function (req, res) {
-    eventsRepo.getAllEvents(function (err, events) {
-        if (err) {
-            res.status(500).send('server error - event overview');
-            res.end();
-        }
-        res.render('events/index', {title: 'Events', eventslist: events});
-    });
+        eventsRepo.getAllEvents(function (err, events) {
+            if (err) {
+                res.status(500).send('server error - event overview');
+                res.end();
+            }
+            res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage') });
+        });
 });
 
 router.get('/myevents', function (req, res) {
@@ -59,6 +59,7 @@ router.get('/:id/edit', loadEvent, function (req, res) {
 });
 
 router.post('/:id/edit', loadEvent, function (req, res) {
+    if (req.user.admin == true) {
     var name = req.body.name,
         description = req.body.description,
         date = req.body.date,
@@ -89,21 +90,38 @@ router.post('/:id/edit', loadEvent, function (req, res) {
                 }
             });
         }
-    });
+        });
+    } else {
+        req.flash('adminMessage', 'You must be an administrator to do that.');
+        res.format({
+            html: function () {
+                res.redirect('/events');
+            }
+        });
+    }
 });
 
-router.get('/:id/delete', loadEvent, function (req, res) {    
-    req.event.update({ eventCancelled: true }, function (err) {
-        if (err) {
-            res.send('Delete failed' + err);
-        } else {
-            res.format({
-                html: function () {
-                    res.redirect('/events');
-                }
-            });
-        }
-    });
+router.get('/:id/delete', loadEvent, function (req, res) {
+    if (req.user.admin == true) {
+        req.event.update({ eventCancelled: true }, function (err) {
+            if (err) {
+                res.send('Delete failed' + err);
+            } else {
+                res.format({
+                    html: function () {
+                        res.redirect('/events');
+                    }
+                });
+            }
+        });
+    } else {
+        req.flash('adminMessage', 'You must be an administrator to do that.');
+        res.format({
+            html: function () {
+                res.redirect('/events');
+            }
+        });
+    }
 });
 
 module.exports = router;

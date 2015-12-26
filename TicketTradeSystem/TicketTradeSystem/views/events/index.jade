@@ -3,7 +3,12 @@
 block content
     h1=title
         a.btn.btn-default(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i> 
-        - for(var event in eventslist) {
+    if (messages)
+        if (messages.length > 0)
+            .alert.alert-dismissable.alert-danger
+                button.close( type="button", data-dismiss="alert" ) x 
+                | #{messages}
+    - for(var event in eventslist) {
     - if (event % 4 === 0 || event == 0) {
     .row
     - }
@@ -21,4 +26,4 @@ block content
                         #description
                             =eventslist[event].description
             a.btn.btn-info(href="/events/#{eventslist[event]._id}") Show
-        - };
+    - };
