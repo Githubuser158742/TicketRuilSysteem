@@ -19,3 +19,8 @@ block content
             a(href='/auth/facebook') <i class="fa fa-facebook-official"></i> I want to sign in with Facebook
         p        
             a(href='/signup') <i class="fa fa-pencil-square-o"></i> I want to make an account
+
+    script.
+        $( window ).load(function() {
+            $("html, body").delay(1000).animate( { scrollTop: $(document).height() }, {duration:3000,easing:'easeOutExpo'});
+        });

@@ -8,12 +8,19 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
+var http = require('http');
 var routes = require('./routes/index');
 var tickets = require('./routes/tickets');
 var events = require('./routes/events');
 var attachAuthenticationStatus = require('./routes/middleware/attachAuthenticationStatus.js');
 
 var app = express();
+
+// ↓↓ SOCKET.IO ↓↓
+var server = http.Server(app);
+var socket = require('socket.io').listen(server);
+// ↑↑ SOCKET.IO ↑↑
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

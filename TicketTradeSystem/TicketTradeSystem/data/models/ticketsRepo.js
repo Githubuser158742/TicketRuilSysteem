@@ -48,7 +48,7 @@ var ticketsRepo = (function () {
                 // NEXT IS NOT A FUNCTION
                 // COMMENTING THIS RESULTS IN THE WEBSITE WAITING/"HANGING"
                 // FOR FURTHER TEMPORARY DEBUGGING PURPOSES, LEAVE THIS AS IS AND CLICK ON 'TICKETS' LINK TO SIMULATE A REACTION
-                // next(ticket);
+                next(ticket);
             });
         };
     return {

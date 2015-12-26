@@ -46,7 +46,7 @@ router.get('/new', function (req, res) {
 router.post('/', loadEventForTicketPost, function (req, res, next) {
     req.body.userid = req._passport.session.user;
     var user = req._passport.session;
-    ticketsRepo.createTicket(req.body, req.event, user, function (next) {
+    ticketsRepo.createTicket(req.body, req.event, function (next) {
         if (next.errors) {
             next(new Error(next.message));
         } else {
