@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var io = require('socket.io');
 
 var eventsRepo = require('../data/models/eventsRepo');
 
@@ -17,7 +18,7 @@ router.get('/', isAuthenticated, function (req, res) {
             if (err) {
                 res.status(500).send('server error - event overview');
                 res.end();
-            }
+        }
             res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage') });
         });
 });

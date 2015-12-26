@@ -3,6 +3,11 @@ var debug = require('debug')('TicketTradeSystem');
 var app = require('../app');
 var config = require('../config/config');
 
+//sockets
+var http = require('http');
+var server = http.createServer(app);
+var io = require('socket.io')(server);
+
 app.set('port', process.env.PORT || 3000);
 
 var DBService = require('../data/connectDBService.js');
@@ -11,3 +16,6 @@ var connectDB = DBService(config.MONGODBURL,require('mongoose'));
 var server = app.listen(app.get('port'), function() {
     debug('Express server listening on port ' + server.address().port);
 });
+
+var sockets = io.listen(server);
+require('../sockets.js')(io, connectDB);

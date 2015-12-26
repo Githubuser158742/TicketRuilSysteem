@@ -14,7 +14,7 @@ var ticketsRepo = (function () {
             docs.forEach(function (doc) { 
                 if (doc._event.eventCancelled == false) { docs2.push(doc); }
             });
-            console.log(docs2);
+            //console.log(docs2);
             next(null, docs2);
         });
     },
