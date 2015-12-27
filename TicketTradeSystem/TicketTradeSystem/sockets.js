@@ -10,14 +10,10 @@
             socket.broadcast.emit('nick', allClients);
         });
         
-        socket.on('subscribe', function (room) {
-            console.log('joining room', room);
+        socket.on('join', function (room) {
             socket.join(room);
-        });
-        
-        socket.on('unsubscribe', function (room) {
-            console.log('leaving room', room);
-            socket.leave(room);
+            socket.room = room;
+            console.log('joining room ' + socket.room);
         });
         
         socket.on('nick', function (nick) {
@@ -27,22 +23,14 @@
             socket.broadcast.emit('nick', allClients);
         });
         
-        //socket.on('typing', function () {
-        //    socket.broadcast.emit('typing',  {
-        //        nick: socket.nick
-        //    });
-        //});
-
         socket.on('chatroom', function (data) {
             var nick = socket.nick;
+            var room = socket.room;
             var payload = {
                 message: data.message,
-                nick: nick
+                nick: nick,
             };
-            socket.emit('chatroom', payload);
-            socket.broadcast.emit('chatroom', payload);
-            //socket.in(data.room).emit('chatroom', payload);
-            //socket.in(data.room).broadcast.emit('chatroom', payload);
+            io.sockets.in(room).emit('chatroom', payload);
         });
     });
 };
