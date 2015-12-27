@@ -13,12 +13,6 @@ router.get('/', isNotAuthenticated, function (req, res) {
     res.render('index', { title: 'Welcome', messages: req.flash('error') });
 });
 
-router.get('/test', function (req, res) {
-    res.render('test.jade');
-});
-
-
-
 router.get('/login', isNotAuthenticated, function (req, res) {
     res.render('login.jade', { title: 'Sign in', messages: req.flash('loginMessage') });
 });

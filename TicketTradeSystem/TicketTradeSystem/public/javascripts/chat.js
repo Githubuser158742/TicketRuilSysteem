@@ -2,7 +2,7 @@
     var socket = io.connect();
     socket.on('nick', function (data) {
         data.forEach(function (entry) {
-            document.getElementById("Clients").value = document.getElementById("Clients").value + entry + '\n';
+                document.getElementById("Clients").value = document.getElementById("Clients").value + entry + '\n';
         });
     });
     socket.on('chatroom', function (data) {

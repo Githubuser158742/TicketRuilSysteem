@@ -88,7 +88,6 @@
     <Content Include="views\profile-fb.jade" />
     <Content Include="views\profile.jade" />
     <Content Include="views\signup.jade" />
-    <Content Include="views\test.jade" />
     <Content Include="views\tickets\detail.jade" />
     <Content Include="views\tickets\edit.jade" />
     <Content Include="views\tickets\index.jade" />
