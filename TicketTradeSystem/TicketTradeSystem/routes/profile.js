@@ -62,7 +62,7 @@ router.post('/', function (req, res) {
                 req.flash('detailsChanged', 'Your details have been changed!');
                 res.redirect('/profile');
             })
-        })
+        });
     }
 });
 
