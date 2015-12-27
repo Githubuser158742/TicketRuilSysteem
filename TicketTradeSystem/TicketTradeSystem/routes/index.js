@@ -6,6 +6,8 @@ var passport = require('passport');
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 var isNotAuthenticated = require('./middleware/isNotAuthenticated.js');
 
+var usersRepo = require('../data/models/usersRepo');
+
 //router.emitter = new (require('events').EventEmitter)();
 
 /* GET home page. */
@@ -37,19 +39,15 @@ router.get('/profile', function (req, res) {
 });
 
 router.post('/profile', function (req, res) {
-    var user = req.body;
-    user.save(function (err) {
-        if (err) return next(err)
-        // What's happening in passport's session? Check a specific field...
-        console.log("Before relogin: " + req.session.passport.user.changedField)
-        
-        req.login(user, function (err) {
-            if (err) return next(err)
-            
-            console.log("After relogin: " + req.session.passport.user.changedField)
-            res.send(200)
-        })
-    })
+    var user = req.user;
+    var changes = req.body;
+    console.log("CURRENT");
+    console.log(user);
+    console.log("CHANGES");
+    console.log(changes);
+    usersRepo.changeUser(user, changes, function (req, res) {
+        res.render('profile.jade', { user : req.user, title: "Profile", info: "Your details have been changed!" });
+    });
 });
 
 router.get('/logout', function (req, res) {
@@ -63,7 +61,7 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' 
 // CB
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-    successRedirect : '/profile-fb',
+    successRedirect : '/profile',
     failureRedirect : '/'
 }));
 
