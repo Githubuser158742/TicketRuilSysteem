@@ -52,7 +52,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', loadEvent, function (req, res) {
-    res.render('events/detail', {nick: req.user.local.fistname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
+    res.render('events/detail', {nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
 });
 
 router.get('/:id/edit', loadEvent, function (req, res) {

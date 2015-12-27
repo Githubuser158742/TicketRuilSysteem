@@ -5,12 +5,18 @@
     io.sockets.on('connection', function (socket) {
 
         socket.on('disconnect', function () {
+<<<<<<< HEAD
             if (io.nsps["/"].adapter.rooms[socket.room]) {
                 io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
             }
             else {
                 console.log(socket.room + " is empty");
             }
+=======
+            console.log('Someone has disconnected from the chat.');
+            console.log(socket);
+            //io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
+>>>>>>> origin/master
         });
         
         socket.on('join', function (room) {
