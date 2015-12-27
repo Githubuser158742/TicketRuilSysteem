@@ -1,10 +1,9 @@
-﻿doctype html
-html
-  head
-  script(src="/socket.io/socket.io.js")
-    title Chat
-  body
-    section
-        input(id="inpClient", type="text")
-        div(id="messages")
-    script(src="/javascripts/chat.js")
+﻿script(src='/socket.io/socket.io.js')
+script(src='/javascripts/chat2.js')
+
+block content
+    h1 Group Chat
+        textarea#Text
+        input#input(type='text')
+        button#chat(type='submit') Send Message
+        textarea#Clients

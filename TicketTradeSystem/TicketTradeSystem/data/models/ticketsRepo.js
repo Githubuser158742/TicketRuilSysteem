@@ -9,7 +9,7 @@ var ticketsRepo = (function () {
                 console.log(err);
                 next(err, null);
             }
-            console.log(docs);
+            //console.log(docs);
             var docs2 = [];
             docs.forEach(function (doc) { 
                 if (doc._event.eventCancelled == false) { docs2.push(doc); }

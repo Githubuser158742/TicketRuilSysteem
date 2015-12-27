@@ -7,11 +7,6 @@ client.chat = (function (txtInput, txtMessages) {
     
     var lastMsg;
     
-    socket.on('login', function () {
-        var username = prompt('Kies een gebruikersnaam');
-        socket.emit("login", username);
-    })
-    
     socket.on("serverMessage", function (json) {
         showMessage(JSON.parse(json));
     })

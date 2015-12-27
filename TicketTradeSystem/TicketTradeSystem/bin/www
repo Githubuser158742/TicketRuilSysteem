@@ -18,4 +18,4 @@ var server = app.listen(app.get('port'), function() {
 });
 
 var sockets = io.listen(server);
-require('../sockets.js')(io, connectDB);
+require('../sockets.js')(io);

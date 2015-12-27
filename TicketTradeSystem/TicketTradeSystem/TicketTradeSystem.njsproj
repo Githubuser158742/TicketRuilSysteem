@@ -45,6 +45,7 @@
     <Compile Include="data\schemas\user.js" />
     <Compile Include="public\javascripts\bootstrap.js" />
     <Compile Include="public\javascripts\chat.js" />
+    <Compile Include="public\javascripts\chat2.js" />
     <Compile Include="public\javascripts\ct-navbar.js" />
     <Compile Include="public\javascripts\jquery-1.10.2.js" />
     <Compile Include="routes\events.js" />
