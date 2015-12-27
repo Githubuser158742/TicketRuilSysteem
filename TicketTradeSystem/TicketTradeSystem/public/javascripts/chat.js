@@ -13,7 +13,7 @@
     //});
     
     socket.on('nick', function (data) {
-        document.getElementById("Clients").value = data + " people are connected to " + roomName;
+        document.getElementById("Clients").value = data + " people are connected to " + roomName + ".";
     });
     
     socket.on('chatroom', function (data) {

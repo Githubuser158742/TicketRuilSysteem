@@ -3,7 +3,7 @@ block scripts
     script.
         nickname="#{nick}";
         room = "#{event.id}";
-        roomName = "{event.name}";
+        roomName = "#{event.name}";
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/chat.js')
 

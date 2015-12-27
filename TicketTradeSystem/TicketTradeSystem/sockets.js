@@ -5,7 +5,9 @@
     io.sockets.on('connection', function (socket) {
 
         socket.on('disconnect', function () {
-            io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
+            console.log('Someone has disconnected from the chat.');
+            console.log(socket);
+            //io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
         });
         
         socket.on('join', function (room) {
