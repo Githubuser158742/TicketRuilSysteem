@@ -15,8 +15,16 @@ block content
     p.description.event !{event.description.replace(/\n/g, '<br/>')}
     each val in event.tags
         span.tag=val
-    h4 Group Chat
-    textarea#Text(readonly)
-    input#input(type='text', autofocus)
-    button#chat(type='submit') Send Message
-    textarea#Clients(readonly)
+ 
+    
+    h4 Negotiate
+        .form-group
+            .row
+                .col-md-9
+                    textarea#Text(class='form-control', readonly, rows="10")
+                .col-md-3
+                    textarea#Clients(class='form-control', readonly, rows="10")
+        .input-group
+            input#input(type='text', autofocus, class='form-control')
+            btn#chat(type="submit", class="input-group-btn btn btn-default go inline")
+                i.pe-7s-paper-plane.pe-lg
