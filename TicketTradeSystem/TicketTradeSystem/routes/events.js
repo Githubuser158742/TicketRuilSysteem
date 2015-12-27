@@ -74,8 +74,9 @@ router.get('/:id', loadEvent, isAuthenticated, function (req, res) {
             res.end();
         }
         //console.log(chatsevent);
-        res.render('events/detail', {chatlistevent: chatsevent, nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
+        res.render('events/detail', { chatlistevent: chatsevent, nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name });
     });
+});
     
 router.get('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
     res.render('events/edit', {event: req.event});
