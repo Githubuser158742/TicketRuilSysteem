@@ -1,0 +1,58 @@
+﻿extends ../layout
+
+block content
+    h1 #{title}
+    if (messages)
+        if (messages.length > 0)
+            .alert.alert-dismissable.alert-danger
+                button.close( type="button", data-dismiss="alert" ) x 
+                | #{messages}
+    if (detailsChanged)
+        if (detailsChanged.length > 0)
+            .alert.alert-dismissable.alert-info
+                button.close( type="button", data-dismiss="alert" ) x 
+                | #{detailsChanged}    
+    form(role='form',action='/profile',method='post')
+        .form-group
+            label(for='firstname') First name:
+            input(type='text',name='firstname', class='form-control', value="#{user.local.firstname}")
+        .form-group
+            label(for='lastname') Last name:
+            input(type='text',name='lastname', class='form-control', value="#{user.local.lastname}")
+        .form-group
+            label(for='city') City:
+            input(type='text',name='city', class='form-control', value="#{user.local.city}")
+        .form-group
+            label(for='email') Email address:
+            input(type='email',name='email', class='form-control', value="#{user.local.email}")
+        button(type='submit', class='btn btn-default') Change
+        fieldset
+            legend Change password
+            .form-group
+                label(for='password') Old password
+                input(type='password',name='password', class='form-control', id='password', class="pw")
+            .form-group
+                label(for='newpassword1') New password
+                input(type='password',name='newpassword1', class='form-control', id='newpassword1', class="pw")
+            .form-group
+                label(for='newpassword2') New password
+                input(type='password',name='newpassword2', class='form-control', id='newpassword2', class="pw")
+        //.form-group
+        //    label(for='password') Password:
+        //    input(type='password',name='password', class='form-control', required)
+        button(type='submit', class='btn btn-default') Change
+        br
+        a(href='/profile/#{user._id}/delete', class='btn btn-danger') Delete account
+
+    script.
+        $('.pw').keyup(function(event){
+            if( $('#password').val() != '' || $('#newpassword1').val() != '' || $('#newpassword2').val() != ''  ) {
+                $("#password").attr('required', '');
+                $("#newpassword1").attr('required', '');
+                $("#newpassword2").attr('required', '');
+            } else {
+                $("#password").removeAttr('required');
+                $("#newpassword1").removeAttr('required');
+                $("#newpassword2").removeAttr('required');
+            }
+        });

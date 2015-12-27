@@ -34,30 +34,6 @@ router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect : '/signup'
 }));
 
-router.get('/profile', isAuthenticated, function (req, res) {
-    res.render('profile.jade', { user : req.user, title: "Profile", messages: req.flash('error'), detailsChanged: req.flash('detailsChanged') });
-});
-
-router.post('/profile', function (req, res) {
-    var user = req.user;
-    user.local.email = req.body.email;
-    user.local.city = req.body.city;
-    user.local.firstname = req.body.firstname;
-    user.local.lastname = req.body.lastname;
-    user.save(function (err) {
-        if (err) return next(err)
-        // What's happening in passport's session? Check a specific field...
-        console.log("Before relogin: " + req.session.passport.user.changedField)
-        
-        req.login(user, function (err) {
-            if (err) return next(err)
-            req.flash('detailsChanged', 'Your details have been changed!');
-            console.log("After relogin: " + req.session.passport.user.changedField)
-            res.redirect('/profile');
-        })
-    })
-});
-
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
