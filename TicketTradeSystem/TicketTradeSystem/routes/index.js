@@ -23,7 +23,7 @@ router.get('/test', function (req, res) {
 
 router.get('/chat', function (req, res) {
     //router.emitter.emit('routermessage', req.user._doc);
-    res.render('chat.jade');
+    res.render('chat.jade', { nick: req.user.local.firstname });
 });
 
 
@@ -47,7 +47,6 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/profile', function (req, res) {
-    console.log(req.user);
     res.render('profile.jade', { user : req.user, title: "Profile", messages: req.flash('error') });
 });
 

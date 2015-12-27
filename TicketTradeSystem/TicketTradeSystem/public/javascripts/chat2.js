@@ -13,7 +13,7 @@
         var msg = data.nick + ': ' + data.message;
         document.getElementById("Text").value = document.getElementById("Text").value + msg + '\n';
     });
-    socket.emit('nick', 'Testjim');
+    socket.emit('nick', nickname);
     document.getElementById("chat").addEventListener("click", function () {
         socket.emit('chatroom', {
             message: document.getElementById("input").value
