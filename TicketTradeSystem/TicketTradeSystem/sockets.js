@@ -5,7 +5,12 @@
     io.sockets.on('connection', function (socket) {
 
         socket.on('disconnect', function () {
-            io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
+            if (io.nsps["/"].adapter.rooms[socket.room]) {
+                io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
+            }
+            else {
+                console.log(socket.room + " is empty");
+            }
         });
         
         socket.on('join', function (room) {

@@ -40,7 +40,6 @@
     <Compile Include="data\models\ticket.js" />
     <Compile Include="data\models\ticketsRepo.js" />
     <Compile Include="data\models\user.js" />
-    <Compile Include="data\models\usersRepo.js" />
     <Compile Include="data\schemas\event.js" />
     <Compile Include="data\schemas\ticket.js" />
     <Compile Include="data\schemas\user.js" />
