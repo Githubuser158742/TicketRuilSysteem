@@ -1,7 +1,7 @@
 ﻿"use strict";
 //var mongoose = require('mongoose');
 
-var usersRepo = (function () {
+var usersRepo =(function () {
     var User = require('./user.js');
     var changeUser = function (user, changes, next) {
         var changedUser = user;
@@ -14,13 +14,24 @@ var usersRepo = (function () {
             if (err) return next(err)            
             user.login(user, function (err) {
                 if (err) return next(err)
+<<<<<<< HEAD
             })
+=======
+                
+                console.log("After relogin: " + req.session.passport.user.changedField)
+                res.send(200)
+            });
+>>>>>>> origin/master
         });
     };
     return {
         model: User,
         changeUser: changeUser
+<<<<<<< HEAD
     };
+=======
+            };
+>>>>>>> origin/master
 }());
 
 module.exports = usersRepo;
