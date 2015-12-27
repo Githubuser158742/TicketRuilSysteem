@@ -1,7 +1,8 @@
 ﻿extends ../layout
 block scripts
     script.
-        nickname="#{nick}";
+        nickname="#{nick.firstname}"+ " " +"#{nick.lastname}";
+        room = "#{event.id}";
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/chat.js')
 
