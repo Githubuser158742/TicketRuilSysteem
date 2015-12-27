@@ -5,11 +5,15 @@
         socket.emit('join', room);
     });
 
+    //socket.on('nick', function (data) {
+    //    document.getElementById("Clients").value = "";
+    //    data.forEach(function (entry) {
+    //        document.getElementById("Clients").value = document.getElementById("Clients").value + entry + '\n';
+    //    });
+    //});
+    
     socket.on('nick', function (data) {
-        document.getElementById("Clients").value = "";
-        data.forEach(function (entry) {
-            document.getElementById("Clients").value = document.getElementById("Clients").value + entry + '\n';
-        });
+        document.getElementById("Clients").value = data + " people are connected to " + room;
     });
     
     socket.on('chatroom', function (data) {
