@@ -28,12 +28,6 @@ var userSchema = new mongoose.Schema({
         email: String,
         name: String
     },    
-    email: String,
-    password: String,
-    firstname: String,
-    lastname: String,
-    city: String,
-    fb: { type: Boolean, default: false },
     admin: { type: Boolean, default: false },
     createdOn: {type: Date, default: Date.now}
 });

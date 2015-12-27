@@ -1,8 +1,9 @@
 ﻿extends ../layout
 block scripts
     script.
-        nickname="#{nick.firstname}"+ " " +"#{nick.lastname}";
+        nickname="#{nick}";
         room = "#{event.id}";
+        roomName = "{event.name}";
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/chat.js')
 
@@ -29,3 +30,11 @@ block content
             input#input(type='text', autofocus, class='form-control')
             btn#chat(type="submit", class="input-group-btn btn btn-default go inline")
                 i.pe-7s-paper-plane.pe-lg
+
+    script.
+        $("#input").keyup(function(event){
+            if(event.keyCode == 13){
+                $("#chat").click();
+                $("#input").val('');
+            }
+        });

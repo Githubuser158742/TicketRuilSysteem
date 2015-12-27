@@ -12,7 +12,7 @@ var ticketsRepo = (function () {
             //console.log(docs);
             var docs2 = [];
             docs.forEach(function (doc) { 
-                if (doc._event.eventCancelled == false) { docs2.push(doc); }
+                if (doc._event.eventCancelled == false && doc._user != null) { docs2.push(doc); }
             });
             //console.log(docs2);
             next(null, docs2);
@@ -45,9 +45,6 @@ var ticketsRepo = (function () {
                         next(err);
                     }
                 });
-                // NEXT IS NOT A FUNCTION
-                // COMMENTING THIS RESULTS IN THE WEBSITE WAITING/"HANGING"
-                // FOR FURTHER TEMPORARY DEBUGGING PURPOSES, LEAVE THIS AS IS AND CLICK ON 'TICKETS' LINK TO SIMULATE A REACTION
                 next(ticket);
             });
         };

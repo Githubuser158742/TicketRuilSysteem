@@ -6,7 +6,7 @@ var passport = require('passport');
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 var isNotAuthenticated = require('./middleware/isNotAuthenticated.js');
 
-var usersRepo = require('../data/models/usersRepo');
+//var usersRepo = require('../data/models/usersRepo');
 
 //router.emitter = new (require('events').EventEmitter)();
 
@@ -34,20 +34,28 @@ router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect : '/signup'
 }));
 
-router.get('/profile', function (req, res) {
-    res.render('profile.jade', { user : req.user, title: "Profile", messages: req.flash('error') });
+router.get('/profile', isAuthenticated, function (req, res) {
+    res.render('profile.jade', { user : req.user, title: "Profile", messages: req.flash('error'), detailsChanged: req.flash('detailsChanged') });
 });
 
 router.post('/profile', function (req, res) {
     var user = req.user;
-    var changes = req.body;
-    console.log("CURRENT");
-    console.log(user);
-    console.log("CHANGES");
-    console.log(changes);
-    usersRepo.changeUser(user, changes, function (req, res) {
-        res.render('profile.jade', { user : req.user, title: "Profile", info: "Your details have been changed!" });
-    });
+    user.local.email = req.body.email;
+    user.local.city = req.body.city;
+    user.local.firstname = req.body.firstname;
+    user.local.lastname = req.body.lastname;
+    user.save(function (err) {
+        if (err) return next(err)
+        // What's happening in passport's session? Check a specific field...
+        console.log("Before relogin: " + req.session.passport.user.changedField)
+        
+        req.login(user, function (err) {
+            if (err) return next(err)
+            req.flash('detailsChanged', 'Your details have been changed!');
+            console.log("After relogin: " + req.session.passport.user.changedField)
+            res.redirect('/profile');
+        })
+    })
 });
 
 router.get('/logout', function (req, res) {
@@ -56,21 +64,21 @@ router.get('/logout', function (req, res) {
 });
 
 // FACEBOOK
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+//router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
-// CB
-router.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-    successRedirect : '/profile',
-    failureRedirect : '/'
-}));
+//// CB
+//router.get('/auth/facebook/callback',
+//    passport.authenticate('facebook', {
+//    successRedirect : '/profile',
+//    failureRedirect : '/'
+//}));
 
-// FB Profile
-router.get('/profile-fb', function (req, res) {
-    res.render('profile-fb.jade', {
-        user : req.user
-    });
-});
+//// FB Profile
+//router.get('/profile-fb', function (req, res) {
+//    res.render('profile-fb.jade', {
+//        user : req.user
+//    });
+//});
 
 function isLoggedIn(req, res, next) { // if user is authenticated in the session, carry on
     if (req.isAuthenticated()) {
