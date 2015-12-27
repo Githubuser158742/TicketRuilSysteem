@@ -20,11 +20,11 @@ router.get('/', isAuthenticated, function (req, res) {
                 res.status(500).send('server error - event overview');
                 res.end();
         }
-            res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage') });
+            res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage'), search: false });
         });
 });
 
-router.get('/myevents', function (req, res) {
+router.get('/myevents', isAuthenticated, function (req, res) {
     eventsRepo.getEventsByIdUser(req._passport.session.user, function (err, eventsuser) {
         if (err) {
             res.status(500).send('server error - events user');
@@ -34,11 +34,26 @@ router.get('/myevents', function (req, res) {
     });
 });
 
-router.get('/new', function (req, res) {
+router.get('/new', isAuthenticated, function (req, res) {
     res.render('events/new', {title: 'New Event'});
 });
 
-router.post('/', function (req, res, next) {
+router.get("/search", function (req, res) {
+    res.redirect("/");
+});
+
+router.post("/search", function (req, res) {
+    console.log("entered search route");
+    eventsRepo.search(req.body.search, function (err, events) {
+        if (err) {
+            res.status(500).send('server error - event search');
+            res.end();
+        }
+        res.render('events/index', { title: "Zoeken: " + req.body.search, eventslist: events, search: true });
+    });
+});
+
+router.post('/', isAuthenticated, function (req, res, next) {
     req.body.userId = req._passport.session.user;
     var tags = req.body.tags.replace(", ", ",").split(",");
     req.body.tags = tags;
@@ -52,23 +67,21 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.get('/:id', loadEvent, function (req, res) {
+router.get('/:id', loadEvent, isAuthenticated, function (req, res) {
     chatsRepo.getChatByEvent(req.event.id, function (err, chatsevent) {
         if (err) {
             res.status(500).send('server error - chats event');
             res.end();
         }
         //console.log(chatsevent);
-        res.render('events/detail', {chatlistevent: chatsevent,nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
+        res.render('events/detail', {chatlistevent: chatsevent, nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
     });
     
-});
-
-router.get('/:id/edit', loadEvent, function (req, res) {
+router.get('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
     res.render('events/edit', {event: req.event});
 });
 
-router.post('/:id/edit', loadEvent, function (req, res) {
+router.post('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
     if (req.user.admin == true) {
     var name = req.body.name,
         description = req.body.description,
@@ -111,7 +124,7 @@ router.post('/:id/edit', loadEvent, function (req, res) {
     }
 });
 
-router.get('/:id/delete', loadEvent, function (req, res) {
+router.get('/:id/delete', loadEvent, isAuthenticated, function (req, res) {
     if (req.user.admin == true) {
         req.event.update({ eventCancelled: true }, function (err) {
             if (err) {

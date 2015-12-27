@@ -2,7 +2,9 @@
 
 block content
     h1=title
-        a.btn.btn-default(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i> 
+        if (search)
+            if (!search) 
+                a.btn.btn-default(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i>
     if (messages)
         if (messages.length > 0)
             .alert.alert-dismissable.alert-danger

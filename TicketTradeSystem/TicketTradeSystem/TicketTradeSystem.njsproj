@@ -58,6 +58,7 @@
     <Compile Include="routes\middleware\loadEvent.js" />
     <Compile Include="routes\middleware\loadEventForTicketPost.js" />
     <Compile Include="routes\middleware\loadTicket.js" />
+    <Compile Include="routes\profile.js" />
     <Compile Include="routes\tickets.js" />
     <Compile Include="bin\www" />
     <Compile Include="sockets.js" />
@@ -89,7 +90,7 @@
     <Content Include="views\error.jade" />
     <Content Include="views\login.jade" />
     <Content Include="views\profile-fb.jade" />
-    <Content Include="views\profile.jade" />
+    <Content Include="views\profile\index.jade" />
     <Content Include="views\signup.jade" />
     <Content Include="views\tickets\detail.jade" />
     <Content Include="views\tickets\edit.jade" />
@@ -112,6 +113,7 @@
     <Folder Include="routes\middleware\" />
     <Folder Include="views\" />
     <Folder Include="views\events\" />
+    <Folder Include="views\profile\" />
     <Folder Include="views\tickets\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

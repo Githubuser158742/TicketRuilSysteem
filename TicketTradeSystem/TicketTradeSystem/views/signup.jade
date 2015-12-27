@@ -2,6 +2,11 @@
 
 block content
     h1 #{title}
+    if (messages)
+        if (messages.length > 0)
+            .alert.alert-dismissable.alert-danger
+                button.close( type="button", data-dismiss="alert" ) x 
+                | #{messages}
     form(role='form',action='/signup',method='post')
         .form-group
             label(for='firstname') First name:
