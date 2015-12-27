@@ -1,55 +1,18 @@
-﻿console.log("chat.js loaded");
-
-var client = {};
-client.chat = (function (txtInput, txtMessages) {
-    var connection = window.location.origin,
-        socket = io.connect(connection);
-    
-    var lastMsg;
-    
-    socket.on("serverMessage", function (json) {
-        showMessage(JSON.parse(json));
-    })
-    
-    var lastMsg;
-    function showMessage(obj) {
-        var messages = document.getElementById(txtMessages),      
-            newMsg = document.createElement("div");
-        
-        newMsg.appendChild(document.createTextNode(obj.id + " said: " + obj.content));
-        newMsg.style.color = obj.color;
-        
-        messages.insertBefore(newMsg, lastMsg)
-        lastMsg = newMsg;
-    }
-    
-    var onkeydown = function (keyboardEvent) {
-        var inpClient = document.getElementById(txtInput);
-        if (keyboardEvent.keyCode === 13) {
-            socket.emit('message', inpClient.value);
-            inpClient.value = '';
-            return false;
-        } else {
-            return true;
-        }
-    };
-    
-    var addHandlers = function () {
-        inpClient.addEventListener("keydown", onkeydown);
-    }
-    
-    var start = function () {
-        document.addEventListener("DOMContentLoaded", function (event) {
-            console.log("DOMContentLoaded and parsed");
-            addHandlers();
+﻿document.addEventListener("DOMContentLoaded", function () {
+    var socket = io.connect();
+    socket.on('nick', function (data) {
+        data.forEach(function (entry) {
+            document.getElementById("Clients").value = document.getElementById("Clients").value + entry + '\n';
         });
-    }
-    
-    return {
-        start: start(),
-        addHandlers: addHandlers
-    }
-
-})('inpClient', 'messages');
-
-client.chat.start;
+    });
+    socket.on('chatroom', function (data) {
+        var msg = data.nick + ': ' + data.message;
+        document.getElementById("Text").value = document.getElementById("Text").value + msg + '\n';
+    });
+    socket.emit('nick', nickname);
+    document.getElementById("chat").addEventListener("click", function () {
+        socket.emit('chatroom', {
+            message: document.getElementById("input").value
+        });
+    }, false);
+}, false);  

@@ -13,16 +13,8 @@ var routes = require('./routes/index');
 var tickets = require('./routes/tickets');
 var events = require('./routes/events');
 var attachAuthenticationStatus = require('./routes/middleware/attachAuthenticationStatus.js');
-//var socket = require('socket.io');
 
 var app = express();
-
-//// ↓↓ SOCKET.IO ↓↓
-//var server = http.Server(app);
-//var socket = require('socket.io').listen(server);
-//var io = socket();
-//app.io = io;
-//// ↑↑ SOCKET.IO ↑↑
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

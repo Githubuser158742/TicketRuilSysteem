@@ -45,7 +45,6 @@
     <Compile Include="data\schemas\user.js" />
     <Compile Include="public\javascripts\bootstrap.js" />
     <Compile Include="public\javascripts\chat.js" />
-    <Compile Include="public\javascripts\chat2.js" />
     <Compile Include="public\javascripts\ct-navbar.js" />
     <Compile Include="public\javascripts\jquery-1.10.2.js" />
     <Compile Include="routes\events.js" />
@@ -77,7 +76,6 @@
     <Content Include="public\stylesheets\pe-icon-7-stroke.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
-    <Content Include="views\chat.jade" />
     <Content Include="views\events\detail.jade" />
     <Content Include="views\events\edit.jade" />
     <Content Include="views\events\index.jade" />

@@ -6,9 +6,6 @@ var passport = require('passport');
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 var isNotAuthenticated = require('./middleware/isNotAuthenticated.js');
 
-//var http = require('http').Server(express);
-//var io = require('socket.io')(http);
-
 //router.emitter = new (require('events').EventEmitter)();
 
 /* GET home page. */
@@ -17,14 +14,9 @@ router.get('/', isNotAuthenticated, function (req, res) {
 });
 
 router.get('/test', function (req, res) {
-    var user = req.user.local.email;
-    res.render('test.jade', { nick: user });
+    res.render('test.jade');
 });
 
-router.get('/chat', function (req, res) {
-    //router.emitter.emit('routermessage', req.user._doc);
-    res.render('chat.jade', { nick: req.user.local.firstname });
-});
 
 
 router.get('/login', isNotAuthenticated, function (req, res) {
