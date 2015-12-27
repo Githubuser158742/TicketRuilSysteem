@@ -19,22 +19,22 @@ router.get('/login', isNotAuthenticated, function (req, res) {
     res.render('login.jade', { title: 'Sign in', messages: req.flash('loginMessage') });
 });
 
-router.post('/login', passport.authenticate('local-login',{
+router.post('/login', isNotAuthenticated, passport.authenticate('local-login',{
     successRedirect : '/tickets',
     failureRedirect : '/login',
     session: true
 }));
 
-router.get('/signup', function (req, res) {
-    res.render('signup.jade', { title: 'Sign up' });
+router.get('/signup', isNotAuthenticated, function (req, res) {
+    res.render('signup.jade', { title: 'Sign up', messages: req.flash('signupMessage') });
 });
 
-router.post('/signup', passport.authenticate('local-signup', {
+router.post('/signup', isNotAuthenticated, passport.authenticate('local-signup', {
     successRedirect : '/profile',
     failureRedirect : '/signup'
 }));
 
-router.get('/logout', function (req, res) {
+router.get('/logout', isAuthenticated, function (req, res) {
     req.logout();
     res.redirect('/');
 });

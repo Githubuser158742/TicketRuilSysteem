@@ -23,7 +23,7 @@ router.get('/', isAuthenticated, function (req, res) {
         });
 });
 
-router.get('/myevents', function (req, res) {
+router.get('/myevents', isAuthenticated, function (req, res) {
     eventsRepo.getEventsByIdUser(req._passport.session.user, function (err, eventsuser) {
         if (err) {
             res.status(500).send('server error - events user');
@@ -33,11 +33,11 @@ router.get('/myevents', function (req, res) {
     });
 });
 
-router.get('/new', function (req, res) {
+router.get('/new', isAuthenticated, function (req, res) {
     res.render('events/new', {title: 'New Event'});
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', isAuthenticated, function (req, res, next) {
     req.body.userId = req._passport.session.user;
     var tags = req.body.tags.replace(", ", ",").split(",");
     req.body.tags = tags;
@@ -51,15 +51,15 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.get('/:id', loadEvent, function (req, res) {
+router.get('/:id', loadEvent, isAuthenticated, function (req, res) {
     res.render('events/detail', {nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
 });
 
-router.get('/:id/edit', loadEvent, function (req, res) {
+router.get('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
     res.render('events/edit', {event: req.event});
 });
 
-router.post('/:id/edit', loadEvent, function (req, res) {
+router.post('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
     if (req.user.admin == true) {
     var name = req.body.name,
         description = req.body.description,
@@ -102,7 +102,7 @@ router.post('/:id/edit', loadEvent, function (req, res) {
     }
 });
 
-router.get('/:id/delete', loadEvent, function (req, res) {
+router.get('/:id/delete', loadEvent, isAuthenticated, function (req, res) {
     if (req.user.admin == true) {
         req.event.update({ eventCancelled: true }, function (err) {
             if (err) {

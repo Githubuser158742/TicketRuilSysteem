@@ -23,7 +23,7 @@ router.get('/', isAuthenticated, function (req, res) {
     res.render('profile/index', { user : req.user, title: "Profile", messages: req.flash('error'), detailsChanged: req.flash('detailsChanged') });
 });
 
-router.post('/', function (req, res) {
+router.post('/', isAuthenticated, function (req, res) {
     if (req.body.password || req.body.newpassword1 || req.body.newpassword2) {
         if (req.body.newpassword1 == req.body.newpassword2) {
             var user = req.user;

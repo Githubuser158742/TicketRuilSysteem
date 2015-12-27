@@ -33,7 +33,7 @@ router.get('/mytickets', function (req, res) {
     });
 });
 
-router.get('/new', function (req, res) {
+router.get('/new', isAuthenticated, function (req, res) {
     eventsRepo.getAllEvents(function (err, events) {
         if (err) {
             res.status(500).send('server error - new ticket');
@@ -43,7 +43,7 @@ router.get('/new', function (req, res) {
     });
 });
 
-router.post('/', loadEventForTicketPost, function (req, res, next) {
+router.post('/', loadEventForTicketPost, isAuthenticated, function (req, res, next) {
     req.body.userid = req._passport.session.user;
     var user = req._passport.session;
     ticketsRepo.createTicket(req.body, req.event, function (next) {
@@ -56,15 +56,15 @@ router.post('/', loadEventForTicketPost, function (req, res, next) {
     });
 });
 
-router.get('/:id', loadTicket, function (req, res) {
+router.get('/:id', loadTicket, isAuthenticated, function (req, res) {
     res.render('tickets/detail', {ticket: req.ticket, title: req.ticket._event.name});
 });
 
-router.get('/:id/edit', loadTicket, function (req, res) {
+router.get('/:id/edit', loadTicket, isAuthenticated, function (req, res) {
     res.render('tickets/edit', {ticket: req.ticket, title: "Edit ticket"});
 });
 
-router.post('/:id/edit', loadTicket, function (req, res) {
+router.post('/:id/edit', loadTicket, isAuthenticated, function (req, res) {
     var name = req.body.name,
         amount = req.body.amount,
         price = req.body.price;
@@ -86,7 +86,7 @@ router.post('/:id/edit', loadTicket, function (req, res) {
     });
 });
 
-router.get('/:id/delete', loadTicket, function (req, res) {
+router.get('/:id/delete', loadTicket, isAuthenticated, function (req, res) {
     req.ticket.remove(function (err) {
         if (err) {
             return console.error(err);
