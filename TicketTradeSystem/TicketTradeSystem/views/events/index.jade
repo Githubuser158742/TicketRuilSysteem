@@ -12,6 +12,7 @@ block content
                 | #{messages}
     - for(var event in eventslist) {
     - if (event % 4 === 0 || event == 0) {
+    - var amount = 0;
     .row
     - }
         .col-md-3
@@ -23,6 +24,8 @@ block content
                     =eventslist[event].location
                     |, 
                     =eventslist[event].city
+                each ticket, index in eventslist[event].tickets
+                    - var amount = amount + #{eventslist[event].tickets[index].amount}
                 b 
                     i
                         #description

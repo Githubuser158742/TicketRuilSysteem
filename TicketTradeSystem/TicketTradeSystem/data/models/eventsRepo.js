@@ -3,16 +3,17 @@
 
 var eventsRepo = (function () {
     var Event = require('./event.js');
+    var User = require('./user.js');
     var getAllEvents = function (next) {
-            Event.find({eventCancelled:false}).populate('tickets').sort('date').exec(function (err, events) {
-                if (err) {
-                    console.log(err);
-                    next(err, null);
+        Event.find({ eventCancelled: false }).populate('tickets').populate('tickets._user').sort('date').exec(function (err, events) {
+            if (err) {
+                console.log(err);
+                next(err, null);
             }
             console.log(events);
-                next(null, events);
-            });
-        },
+            next(null, events);
+        });
+    },
         search = function (search, next) { 
             Event.find({ name: new RegExp(search, "i"), eventCancelled: false }).populate('tickets').sort('date').exec(function (err, docs) {
                 if (err) {
