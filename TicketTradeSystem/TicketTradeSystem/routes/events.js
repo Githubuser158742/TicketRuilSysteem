@@ -19,7 +19,7 @@ router.get('/', isAuthenticated, function (req, res) {
                 res.status(500).send('server error - event overview');
                 res.end();
         }
-            res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage') });
+            res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage'), search: false });
         });
 });
 
@@ -35,6 +35,21 @@ router.get('/myevents', isAuthenticated, function (req, res) {
 
 router.get('/new', isAuthenticated, function (req, res) {
     res.render('events/new', {title: 'New Event'});
+});
+
+router.get("/search", function (req, res) {
+    res.redirect("/");
+});
+
+router.post("/search", function (req, res) {
+    console.log("entered search route");
+    eventsRepo.search(req.body.search, function (err, events) {
+        if (err) {
+            res.status(500).send('server error - event search');
+            res.end();
+        }
+        res.render('events/index', { title: "Zoeken: " + req.body.search, eventslist: events, search: true });
+    });
 });
 
 router.post('/', isAuthenticated, function (req, res, next) {

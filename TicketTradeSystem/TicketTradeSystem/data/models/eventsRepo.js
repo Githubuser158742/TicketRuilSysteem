@@ -4,16 +4,26 @@
 var eventsRepo = (function () {
     var Event = require('./event.js');
     var getAllEvents = function (next) {
-            Event.find({eventCancelled:false}).sort('name').exec(function (err, events) {
+            Event.find({eventCancelled:false}).populate('tickets').sort('date').exec(function (err, events) {
+                if (err) {
+                    console.log(err);
+                    next(err, null);
+            }
+            console.log(events);
+                next(null, events);
+            });
+        },
+        search = function (search, next) { 
+            Event.find({ name: new RegExp(search, "i"), eventCancelled: false }).populate('tickets').sort('date').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
                 }
-                next(null, events);
+                next(null, docs);
             });
         },
         getEventsByCity = function (search, next) {
-            Event.find({city: search}).sort('name').exec(function (err, docs) {
+            Event.find({city: search}).populate('tickets').sort('date').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -22,7 +32,7 @@ var eventsRepo = (function () {
             });
         },
         getEventByID = function (search, next) {
-            Event.findOne({_id: search}, function (err, event) {
+            Event.findOne({_id: search}.populate('tickets'), function (err, event) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -31,7 +41,7 @@ var eventsRepo = (function () {
             });
         },
         getEventsByIdUser = function (id, next) {
-            Event.find({userId: id}).sort('name').exec(function (err, docs) {
+            Event.find({userId: id}).populate('tickets').sort('date').exec(function (err, docs) {
                 if (err) {
                     console.log(err);
                     next(err, null);
@@ -50,6 +60,7 @@ var eventsRepo = (function () {
         };
     return {
         model: Event,
+        search: search,
         getAllEvents: getAllEvents,
         getEventsByCity: getEventsByCity,
         getEventByID: getEventByID,
