@@ -2,7 +2,7 @@
 
 module.exports = function (io) {
 
-    var allClients = [];
+    var users = {};
 
     io.sockets.on('connection', function (socket) {
 

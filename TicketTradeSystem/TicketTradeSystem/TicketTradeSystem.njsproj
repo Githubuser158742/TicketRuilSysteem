@@ -36,6 +36,7 @@
     <Compile Include="config\passport.js" />
     <Compile Include="data\connectDBService.js" />
     <Compile Include="data\models\chat.js" />
+    <Compile Include="data\models\chatsRepo.js" />
     <Compile Include="data\models\event.js" />
     <Compile Include="data\models\eventsRepo.js" />
     <Compile Include="data\models\ticket.js" />

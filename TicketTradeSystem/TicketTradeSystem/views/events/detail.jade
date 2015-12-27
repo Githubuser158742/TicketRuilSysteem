@@ -23,7 +23,10 @@ block content
         .form-group
             .row
                 .col-md-9
-                    textarea#Text(class='form-control', readonly, rows="10")
+                    textarea#Text(class='form-control', readonly, rows="10") 
+                        - for(var chat in chatlistevent) {
+                            "#{chatlistevent[chat].nick}":"#{chatlistevent[chat].message}"
+                            - };
                 .col-md-3
                     textarea#Clients(class='form-control', readonly, rows="10")
         .input-group

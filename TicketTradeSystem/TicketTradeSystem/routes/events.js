@@ -5,6 +5,7 @@ var fs = require('fs');
 var io = require('socket.io');
 
 var eventsRepo = require('../data/models/eventsRepo');
+var chatsRepo = require('../data/models/chatsRepo');
 
 //middleware
 var loadEvent = require('./middleware/loadEvent.js');
@@ -52,7 +53,15 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/:id', loadEvent, function (req, res) {
-    res.render('events/detail', {nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
+    chatsRepo.getChatByEvent(req.event.id, function (err, chatsevent) {
+        if (err) {
+            res.status(500).send('server error - chats event');
+            res.end();
+        }
+        //console.log(chatsevent);
+        res.render('events/detail', {chatlistevent: chatsevent,nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name});
+    });
+    
 });
 
 router.get('/:id/edit', loadEvent, function (req, res) {
