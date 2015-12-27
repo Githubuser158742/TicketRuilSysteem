@@ -1,4 +1,6 @@
-﻿module.exports = function (io) {
+﻿var Chat = require('./data/models/chat.js');
+
+module.exports = function (io) {
 
     var allClients = [];
 
@@ -24,11 +26,11 @@
         });
         
         socket.on('chatroom', function (data) {
-            var payload = {
-                message: data.message,
-                nick: socket.nick,
-            };
-            io.sockets.in(socket.room).emit('chatroom', payload);
+            var newMessage = new Chat({message: data.message, nick: socket.nick, room: socket.room});
+            newMessage.save(function (err) {
+                if(err) throw err;
+            });
+            io.sockets.in(socket.room).emit('chatroom', {message: data.message, nick: socket.nick});
         });
     });
 };

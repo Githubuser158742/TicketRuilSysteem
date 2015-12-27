@@ -35,11 +35,13 @@
     <Compile Include="config\config.js" />
     <Compile Include="config\passport.js" />
     <Compile Include="data\connectDBService.js" />
+    <Compile Include="data\models\chat.js" />
     <Compile Include="data\models\event.js" />
     <Compile Include="data\models\eventsRepo.js" />
     <Compile Include="data\models\ticket.js" />
     <Compile Include="data\models\ticketsRepo.js" />
     <Compile Include="data\models\user.js" />
+    <Compile Include="data\schemas\chat.js" />
     <Compile Include="data\schemas\event.js" />
     <Compile Include="data\schemas\ticket.js" />
     <Compile Include="data\schemas\user.js" />
