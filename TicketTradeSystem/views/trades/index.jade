@@ -1,5 +1,26 @@
 ﻿extends ../layout
 
 block content
-    each trade in tradeslist
-        p #{trade._ticket._user.local.firstname}
+    #map_canvas
+    .panel-group
+        each trade, index in tradeslist
+            .panel.panel-default
+                .panel-heading
+                    h4.panel-title
+                        a(data-toggle="collapse", href="#" + index)
+                            <b>#{trade._user.local.firstname} #{trade._user.local.lastname}</b> wants to buy <b>#{trade.amount}</b> ticket(s) for <b>#{trade._ticket._event.name}</b>
+                div.panel-collapse.collapse(id=index)
+                    .panel-body
+                        p 
+                            | #{trade._user.local.firstname} #{trade._user.local.lastname}
+                        p 
+                            | #{trade._user.local.street} #{trade._user.local.number}
+                            br
+                            | #{trade._user.local.zip} #{trade._user.local.city}
+                        p
+                            | Your asking price was <b>€!{parseFloat(Math.round(trade._ticket.price * 100) / 100).toFixed(2)}</b>.
+                            br
+                            | So that would make a total of <b>€!{parseFloat(Math.round(trade.amount * trade._ticket.price * 100) / 100).toFixed(2)}</b>
+                    .panel-footer
+                        a(href='mailto:'+trade._user.local.email) #{trade._user.local.email}
+                       
