@@ -5,6 +5,7 @@ var async = require('async');
 
 var ticketsRepo = require('../data/models/ticketsRepo');
 var eventsRepo = require('../data/models/eventsRepo');
+var tradesRepo = require('../data/models/tradesRepo');
 
 //middleware
 var loadTicket = require('./middleware/loadTicket.js');
@@ -58,6 +59,17 @@ router.post('/', loadEventForTicketPost, isAuthenticated, function (req, res, ne
 
 router.get('/:id', loadTicket, isAuthenticated, function (req, res) {
     res.render('tickets/detail', {ticket: req.ticket, title: req.ticket._event.name});
+});
+
+router.post('/:id', loadTicket, isAuthenticated, function (req, res) {
+    tradesRepo.createTrade(req.body, function (next){
+        if (next.errors) {
+            next(new Error(next.message));
+        } else {
+            router.emitter.emit('routermessage', req.body);
+            res.redirect('/tickets');
+        }
+    })
 });
 
 router.get('/:id/edit', loadTicket, isAuthenticated, function (req, res) {
