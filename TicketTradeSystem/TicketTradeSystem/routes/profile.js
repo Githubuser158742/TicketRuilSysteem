@@ -31,6 +31,9 @@ router.post('/', isAuthenticated, function (req, res) {
             user.local.city = req.body.city;
             user.local.firstname = req.body.firstname;
             user.local.lastname = req.body.lastname;
+            user.local.street = req.body.street;
+            user.local.number = req.body.number;
+            user.local.zip = req.body.zip;
             if (user.validPassword(req.body.password)) {
                 user.local.password = user.generateHash(req.body.newpassword1);
                 user.save(function (err) {
@@ -55,6 +58,9 @@ router.post('/', isAuthenticated, function (req, res) {
         user.local.city = req.body.city;
         user.local.firstname = req.body.firstname;
         user.local.lastname = req.body.lastname;
+        user.local.street = req.body.street;
+        user.local.number = req.body.number;
+        user.local.zip = req.body.zip;
         user.save(function (err) {
             if (err) return next(err)
             req.login(user, function (err) {

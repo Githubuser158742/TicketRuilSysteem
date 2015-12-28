@@ -50,6 +50,9 @@ module.exports = function (passport) {
                 newUser.local.firstname = req.body.firstname;
                 newUser.local.lastname = req.body.lastname;
                 newUser.local.city = req.body.city;
+                newUser.local.street = req.body.street;
+                newUser.local.number = req.body.number;
+                newUser.local.zip = req.body.zip;
                 newUser.email = email;
                 // save the user
                 newUser.save(function (err) {

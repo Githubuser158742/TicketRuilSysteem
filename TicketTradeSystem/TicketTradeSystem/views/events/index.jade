@@ -24,8 +24,6 @@ block content
                     =eventslist[event].location
                     |, 
                     =eventslist[event].city
-                each ticket, index in eventslist[event].tickets
-                    - var amount = amount + #{eventslist[event].tickets[index].amount}
                 b 
                     i
                         #description
