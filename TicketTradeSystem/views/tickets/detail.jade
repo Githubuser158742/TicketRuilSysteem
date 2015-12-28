@@ -9,3 +9,8 @@ block content
             h3 #{ticket.price}  
             p
                 #{ticket._event.tags}
+            form(role='form', action='/tickets/#{ticket.id}', method='post')
+                .form-group
+                    label(for='amount') Amount:
+                    input(type='number',name='amount', class='form-control', min='0', step="1")
+                button(type='submit', class='btn btn-default') Buy Ticket

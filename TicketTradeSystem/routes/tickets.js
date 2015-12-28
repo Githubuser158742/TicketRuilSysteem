@@ -62,14 +62,22 @@ router.get('/:id', loadTicket, isAuthenticated, function (req, res) {
 });
 
 router.post('/:id', loadTicket, isAuthenticated, function (req, res) {
-    tradesRepo.createTrade(req.body, function (next){
+    tradesRepo.createTrade(req, function (next) {
         if (next.errors) {
             next(new Error(next.message));
         } else {
             router.emitter.emit('routermessage', req.body);
-            res.redirect('/tickets');
-        }
-    })
+            req.ticket.update({
+                amount: req.ticket._doc.amount - req.body.amount
+            }, function (err) {
+                if (err) {
+                    res.send('Update failed' + err);
+                } else {
+                    res.redirect('/tickets');
+                }
+            });
+        };
+    });
 });
 
 router.get('/:id/edit', loadTicket, isAuthenticated, function (req, res) {

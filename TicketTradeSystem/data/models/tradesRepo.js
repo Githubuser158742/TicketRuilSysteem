@@ -22,10 +22,10 @@ var tradesRepo = (function () {
         },
         createTrade = function (trade, next) {
             var trade = new Trade({
-                amount: trade.amount,
+                amount: trade.body.amount,
                 createdOn: new Date(),
-                _ticket: trade.ticketid,
-                _user: ticket.userid
+                _ticket: trade.params.id,
+                _user: trade._passport.session.user
             });
             Trade.create(trade, function (err) {
                 if (err) {
