@@ -65,6 +65,7 @@
     <Compile Include="routes\tickets.js" />
     <Compile Include="bin\www" />
     <Compile Include="sockets.js" />
+    <Compile Include="tests\mocha\TicketTest.js" />
     <Content Include="JSLintNet.json" />
     <Content Include="package.json" />
     <Content Include="public\fonts\fontawesome-webfont.eot" />
@@ -107,6 +108,7 @@
     <Folder Include="data\models\" />
     <Folder Include="data\schemas\" />
     <Folder Include="config\" />
+    <Folder Include="tests\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\images\" />
@@ -114,6 +116,7 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="routes\middleware\" />
+    <Folder Include="tests\mocha\" />
     <Folder Include="views\" />
     <Folder Include="views\events\" />
     <Folder Include="views\profile\" />
