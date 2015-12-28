@@ -3,7 +3,7 @@
         next();
     } else {
         req.flash('error', 'You are already logged in.');
-        res.redirect('/');
+        res.redirect('/events');
     }
 }
 

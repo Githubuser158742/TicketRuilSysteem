@@ -64,6 +64,7 @@
     <Compile Include="routes\profile.js" />
     <Compile Include="routes\tickets.js" />
     <Compile Include="bin\www" />
+    <Compile Include="routes\trades.js" />
     <Compile Include="sockets.js" />
     <Content Include="JSLintNet.json" />
     <Content Include="package.json" />
@@ -93,6 +94,7 @@
     <Content Include="views\error.jade" />
     <Content Include="views\login.jade" />
     <Content Include="views\profile-fb.jade" />
+    <Content Include="views\profile\admin.jade" />
     <Content Include="views\profile\index.jade" />
     <Content Include="views\signup.jade" />
     <Content Include="views\tickets\detail.jade" />
@@ -100,6 +102,7 @@
     <Content Include="views\tickets\index.jade" />
     <Content Include="views\tickets\mytickets.jade" />
     <Content Include="views\tickets\new.jade" />
+    <Content Include="views\trades\index.jade" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
@@ -116,6 +119,7 @@
     <Folder Include="routes\middleware\" />
     <Folder Include="views\" />
     <Folder Include="views\events\" />
+    <Folder Include="views\trades\" />
     <Folder Include="views\profile\" />
     <Folder Include="views\tickets\" />
   </ItemGroup>

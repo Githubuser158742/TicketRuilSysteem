@@ -24,7 +24,7 @@ router.get('/', isAuthenticated, function (req, res) {
     });
 });
 
-router.get('/mytickets', function (req, res) {
+router.get('/mytickets', isAuthenticated, function (req, res) {
     ticketsRepo.getTicketsByIdUser(req._passport.session.user, function (err, ticketsuser) {
         if (err) {
             res.status(500).send('server error - tickets user');

@@ -18,6 +18,15 @@ html( lang="en" )
         //nog weghalen hier
         block scripts
     body
+    -function prettyDate(dateString){
+        //if it's already a date object and not a string you don't need this line:
+        -var date = new Date(dateString);
+        -var d = date.getDate();
+        -var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+        -var m = monthNames[date.getMonth()];
+        -var y = date.getFullYear();
+        -return m + " " + d + ", " + y;
+    -}
         #navbar-full
             #navbar
                 nav.navbar.navbar-ct-blue(role="navigation", class=title=='Welcome'?'navbar-fixed-top navbar-transparent':undefined)
@@ -58,6 +67,8 @@ html( lang="en" )
                                         p Account
                                             b.caret
                                     ul.dropdown-menu
+                                        li
+                                            a(href="/trade") My tickets
                                         li
                                             a(href="/profile") Edit Account
                                         li

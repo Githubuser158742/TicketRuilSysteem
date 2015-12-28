@@ -21,11 +21,15 @@ div.posterimg {
   background-size: cover;
   border-radius: 5px;
 }
-#description {
+.description,
+.title {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.description:empty:before {
+  content: "Geen beschrijving beschikbaar";
 }
 div.event.posterimg {
   height: 300px;
@@ -47,4 +51,10 @@ p.description.event {
 .pe-lg {
   vertical-align: middle;
   font-size: 1.3333333333333333em;
+}
+.pe-2x {
+  font-size: 2em;
+}
+.pe-va {
+  vertical-align: middle;
 }

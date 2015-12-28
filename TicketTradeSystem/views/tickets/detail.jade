@@ -1,16 +1,26 @@
 ﻿extends ../layout
 
 block content
-    .row
-        .col-md-12
-            h1=title
-            h2 #{ticket._event.name}
-            h2 #{ticket.amount}
-            h3 #{ticket.price}  
-            p
-                #{ticket._event.tags}
-            form(role='form', action='/tickets/#{ticket.id}', method='post')
-                .form-group
-                    label(for='amount') Amount:
-                    input(type='number',name='amount', class='form-control', min='0', step="1")
-                button(type='submit', class='btn btn-default') Buy Ticket
+    h1=title
+    p
+        i.pe-7s-info.pe-fw.pe-va
+        |  !{ticket._event.description.replace(/\n/g, '<br/>')}
+    p
+        i.pe-7s-map-marker.pe-fw.pe-va
+        |  #{ticket._event.location}, #{ticket._event.city}
+    p
+        i.pe-7s-clock.pe-fw.pe-va
+        |  #{prettyDate(ticket._event.date)} 
+        i.pe-7s-date.pe-fw.pe-va
+        |  #{ticket._event.time}
+    div(style="background-image: url('"+ticket._event.pictureUrl+"')", class="posterimg event")
+    p 
+        | Price: 
+        b €!{parseFloat(Math.round(ticket.price * 100) / 100).toFixed(2)}
+    p
+        | Available from this seller: 
+        b #{ticket.amount}
+    form(role='form', action='/tickets/#{ticket.id}', method='post')
+        .form-group
+            input(type='number',name='amount', class='form-control', min='1', max='#{ticket.amount}' step="1", placeholder="Amount of tickets you want to buy")
+        button(type='submit', class='btn btn-default') Buy ticket

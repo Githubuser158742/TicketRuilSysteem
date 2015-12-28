@@ -1,16 +1,28 @@
 ﻿"use strict";
 
 var tradesRepo = (function () {
-    var Trade = require('./trade.js');
+var Trade = require('./trade.js');
     var getAllTrades = function (next) {
-        Trade.find({}).sort('createdOn').populate('_ticket _user').exec(function (err, docs) {
-            if (err) {
-                console.log(err);
-                next(err, null);
+        Trade.find({})
+        .populate('_user')
+        .populate({
+            path: '_ticket',
+            populate : {
+                path: '_event',
+                model: 'Event'
             }
-            next(null, docs);
-        });
-    },
+        })
+        .exec(function (err, docs) {
+               if (err) {
+                   console.log(err);
+                   next(err, null);
+            }
+            var options = { path: '_ticket._user', model: 'User' };
+            Trade.populate(docs, options, function(err, trades) {
+                next(null, trades);
+            });
+           });
+       },
         getTradesByIdUser = function (id, next) {
             Trade.find({ _user: id }).sort('createdOn').exec(function (err, docs) {
                 if (err) {

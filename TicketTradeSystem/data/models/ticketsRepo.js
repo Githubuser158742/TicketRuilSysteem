@@ -12,7 +12,7 @@ var ticketsRepo = (function () {
             //console.log(docs);
             var docs2 = [];
             docs.forEach(function (doc) { 
-                if (doc._event.eventCancelled == false && doc._user != null) { docs2.push(doc); }
+                if (doc._event.eventCancelled == false && doc._user != null && doc.amount > 0) { docs2.push(doc); }
             });
             //console.log(docs2);
             next(null, docs2);

@@ -2,9 +2,8 @@
 
 block content
     h1=title
-        if (search)
-            if (!search) 
-                a.btn.btn-default(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i>
+        if (!search)
+            a.btn.btn-default(href="/events/new", style="margin-bottom: 10px; margin-left: 10px;") <i class="fa fa-plus"></i>
     if (messages)
         if (messages.length > 0)
             .alert.alert-dismissable.alert-danger
@@ -12,13 +11,12 @@ block content
                 | #{messages}
     - for(var event in eventslist) {
     - if (event % 4 === 0 || event == 0) {
-    - var amount = 0;
     .row
     - }
         .col-md-3
             div(style="background-image: url('"+eventslist[event].pictureUrl+"')", class="posterimg")
             p 
-                h3 
+                h3.title 
                     =eventslist[event].name
                 p
                     =eventslist[event].location
@@ -26,7 +24,7 @@ block content
                     =eventslist[event].city
                 b 
                     i
-                        #description
+                        .description
                             =eventslist[event].description
             a.btn.btn-info(href="/events/#{eventslist[event]._id}") Show
     - };

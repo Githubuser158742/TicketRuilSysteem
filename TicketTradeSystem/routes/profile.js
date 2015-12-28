@@ -5,7 +5,7 @@ var router = express.Router();
 //middleware
 var isAuthenticated = require('./middleware/isAuthenticated.js');
 
-router.get('/:id/delete', function (req, res) {
+router.get('/:id/delete', isAuthenticated, function (req, res) {
     req.user.remove(function (err) {
         if (err) {
             return console.error(err);

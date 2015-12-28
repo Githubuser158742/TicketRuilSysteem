@@ -10,7 +10,7 @@ block scripts
 block content
     h1=title
     h2 #{event.location}, #{event.city}
-    h3 #{event.date} - #{event.time}
+    h3 #{prettyDate(event.date)} - #{event.time}
     div(style="background-image: url('"+event.pictureUrl+"')", class="posterimg event")
     p 
         b € !{parseFloat(Math.round(event.price * 100) / 100).toFixed(2)}

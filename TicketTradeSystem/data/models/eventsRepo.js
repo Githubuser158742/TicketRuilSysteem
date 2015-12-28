@@ -5,7 +5,8 @@ var eventsRepo = (function () {
     var Event = require('./event.js');
     var User = require('./user.js');
     var getAllEvents = function (next) {
-        Event.find({ eventCancelled: false }).populate('tickets').populate('tickets._user').sort('date').exec(function (err, events) {
+        var now = new Date();
+        Event.find({ eventCancelled: false, date: { $gte: now } }).populate('tickets').populate('tickets._user').sort('date').exec(function (err, events) {
             if (err) {
                 console.log(err);
                 next(err, null);

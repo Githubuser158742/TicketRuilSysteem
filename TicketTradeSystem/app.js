@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var tickets = require('./routes/tickets');
 var events = require('./routes/events');
 var profile = require('./routes/profile');
+var trades = require('./routes/trades');
 var attachAuthenticationStatus = require('./routes/middleware/attachAuthenticationStatus.js');
 
 var app = express();
@@ -48,6 +49,7 @@ app.use('/', routes);
 app.use('/profile', profile);
 app.use('/tickets', tickets);
 app.use('/events', events);
+app.use('/trades', trades);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
