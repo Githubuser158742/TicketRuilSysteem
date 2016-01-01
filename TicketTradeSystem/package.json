@@ -40,6 +40,8 @@
     "should": "8.0.2",
     "superagent": "1.6.1",
     "expect": "1.13.4",
-    "mockgoose": "5.1.0"
+    "mockgoose": "5.1.0",
+    "gulp": "3.9.0",
+    "gulp-util": "3.0.7"
   }
 }
