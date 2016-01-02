@@ -36,36 +36,13 @@ describe('create + login', function () {
     
     it('find user by email', function (done) {
         User.findOne({'local.email': 'test@test.com'}, function (err, user) {
-            expect(user.local.email).toEqual('test@test.com');
-        });
-        done();
-    });
-    
-    it('login', function (done) {
-        server
-            .post('http://localhost:1337/login')
-            .send({ user: 'test@test.com', password: 'test' })
-            .end(function (err, res) {
-            expect(res.statusCode).toEqual(302);
-            expect(res.body.success).toEqual(true);
-        });
-        done();
-
-    });
-    
-    it('signup', function (done) {
-        server
-            .post('http://localhost:1337/signup')
-            .send({ user: 'test2@test.com', password: 'test2' })
-            .end(function (err, res) {
-            expect(res.statusCode).toEqual(302);
-        });
-        done();
+            expect(user.local.email).to.equal('test@test.com');
+            done();
+        });       
     });
     
     afterEach(function (done) {
         User.remove({ 'local.email': 'test@test.com' }).exec();
-        User.remove({ 'local.email': 'test2@test.com' });
         done();
     });
     
