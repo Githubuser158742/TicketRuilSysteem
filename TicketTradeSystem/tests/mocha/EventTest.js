@@ -9,59 +9,60 @@ var Event = require('../../data/models/event');
 var db;
 var codeToTest = require('../../data/models/eventsRepo');
 
-describe('events', function () {
-    before(function (done) {
-        db = mongoose.connect(config.TESTMONGO);
-        done();
-    });
+//describe('events', function () {
+//    before(function (done) {
+//        db = mongoose.connect(config.TESTMONGO);
+//        done();
+//    });
     
-    beforeEach(function (done) {
-        //var ticket = new Ticket({
-        //    _event: "56814c6166423ee432e26780",
-        //    _user: "56810ccd4db438a8399e474b",
-        //    price: 10,
-        //    amount: 20
-        //});
-        //ticket.save(function (err) {
-        //    if (err) console.log('error' + err.message);
-        //    else console.log('no error saving ticket');
-        //});
-        var event = new Event({
-            _id: "56814d90ed2c4e900fb3c7e9",
-            name: "Feestelijkheden",
-            date: Date.now,
-            userId: "56810ccd4db438a8399e474b",
-            //tickets: []
-        });
-        codeToTest.createEvent(event, function (err) {
-        //event.save(function (err) {
-            if (err) console.log('error' + err.message);
-            else console.log('no error saving event');
-        });
-        done();
-    });
+//    beforeEach(function (done) {
+//        //var ticket = new Ticket({
+//        //    _event: "56814c6166423ee432e26780",
+//        //    _user: "56810ccd4db438a8399e474b",
+//        //    price: 10,
+//        //    amount: 20
+//        //});
+//        //ticket.save(function (err) {
+//        //    if (err) console.log('error' + err.message);
+//        //    else console.log('no error saving ticket');
+//        //});
+//        var event = new Event({
+//            _id: "567d6c01937e3d6c4817d69e",
+//            name: "Feestelijkheden",
+//            description: "hupla",
+//            date: "2016-01-18",
+//            time: "00:00",
+//            location: "Howest",
+//            city: "Kortrijk",
+//            price: 0,
+//            pictureUrl: "https://www.brockport.edu/career/images/GraduateSchoolTests.jpg",
+//            userId: "56810ccd4db438a8399e474b",
+//            eventCancelled: false,
+//            tickets: [],
+//            tags: []
+//        });
+//        //codeToTest.createEvent(event, function (err) {
+//        event.save(function (err) {
+//            if (err) console.log('error' + err.message);
+//            else console.log('no error saving event');
+//        });
+//        done();
+//    });
     
-    it('find event by id', function (done) {
-        codeToTest.getEventByID("56814d90ed2c4e900fb3c7e9", function (err, event) {
-            expect(event).to.not.be.empty;
-            done();
-        });
-    });
+//    it('find event by id', function (done) {
+//        codeToTest.getEventByID("567d6c01937e3d6c4817d69e", function (err, event) {
+//            expect(event).to.not.be.empty;
+//            done();
+//        });
+//    });
     
-    //it('find no tickets by userid', function (done) {
-    //    codeToTest.getTicketsByIdUser("56810ccd4db438a8399e474c", function (err, ticketsuser) {
-    //        expect(ticketsuser).to.be.empty;
-    //        done();
-    //    });
-    //});
+//    afterEach(function (done) {
+//        Event.remove({ '_id': "56814d90ed2c4e900fb3c7e9" }).exec();
+//        done();
+//    });
     
-    afterEach(function (done) {
-        Event.remove({ '_id': "56814d90ed2c4e900fb3c7e9" }).exec();
-        done();
-    });
-    
-    after(function (done) {
-        mongoose.connection.close();
-        done();
-    });
-});
+//    after(function (done) {
+//        mongoose.connection.close();
+//        done();
+//    });
+//});
