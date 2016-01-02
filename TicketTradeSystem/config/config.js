@@ -3,7 +3,8 @@
 var config = {
     HOST: 'http://localhost',
     PORT: getEnv('PORT') || 3000,
-    MONGODBURL : process.env.MONGO_URI || 'mongodb://hannes:abc123@ds058048.mongolab.com:58048/tts'
+    MONGODBURL : process.env.MONGO_URI || 'mongodb://hannes:abc123@ds058048.mongolab.com:58048/tts',
+    TESTMONGO: 'mongodb://localhost:27017/test'
 };
 
 function getEnv(variable) {
