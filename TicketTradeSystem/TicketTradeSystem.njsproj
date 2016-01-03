@@ -66,10 +66,6 @@
     <Compile Include="bin\www" />
     <Compile Include="routes\trades.js" />
     <Compile Include="sockets.js" />
-    <Compile Include="tests\mocha\EventTest.js">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </Compile>
     <Compile Include="tests\mocha\TicketTest.js">
       <SubType>Code</SubType>
       <TestFramework>Mocha</TestFramework>

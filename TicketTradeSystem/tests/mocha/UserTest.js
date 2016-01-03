@@ -43,6 +43,7 @@ describe('create + login', function () {
     
     afterEach(function (done) {
         User.remove({ 'local.email': 'test@test.com' }).exec();
+        mongoose.connection.db.dropDatabase();
         done();
     });
     

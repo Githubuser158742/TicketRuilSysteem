@@ -97,7 +97,7 @@ describe('tickets', function () {
     
     it('create ticket', function (done) {
         var event = new Event({
-            _id: "56814c6166423ee432e26780",
+            _id: "56814c6166423ee432e26781",
             name: "Feestelijkheden",
             description: "hupla",
             date: "2016-01-18",
@@ -113,33 +113,45 @@ describe('tickets', function () {
         });
         
         var ticket = new Object({
-            eventid: "56814c6166423ee432e26780",
+            eventid: "56814c6166423ee432e26781",
             userid: "56810ccd4db438a8399e474b",
             price: 20,
             amount: 30
         });
         
         codeToTest.createTicket(ticket, event, function (err) {
-            if (err) console.log('error' + err.message);
+            if (err) {
+                console.log('error' + err.message);
+            }
             else {
                 console.log('no error saving ticket');
-                codeToTest.getTicketsByIdUser("56810ccd4db438a8399e474b", function (err, ticketsuser) {
-                    expect(ticketsuser).to.not.be.empty;
-                    expect(ticketsuser[0].price).to.equal(10);
-                    expect(ticketsuser[0].amount).to.equal(20);
-                    expect(ticketsuser[1].price).to.equal(20);
-                    expect(ticketsuser[1].amount).to.equal(30);                    
-                });
             }
         });
+        done();      
+    });
+    
+    it('check created ticket', function (done) {
+        codeToTest.getTicketsByIdUser("56810ccd4db438a8399e474b", function (err, ticketsuser) {
+            expect(ticketsuser).to.not.be.empty;
+            expect(ticketsuser[0].price).to.equal(10);
+            expect(ticketsuser[0].amount).to.equal(20);
+            expect(ticketsuser[1].price).to.equal(20);
+            expect(ticketsuser[1].amount).to.equal(30);
+            done();
+        });
+    });
+    
+    it('drop created ticket', function (done) {
+        Ticket.remove({ '_event': "56814c6166423ee432e26781" }).exec();
+        Event.remove({ '_id': "56814c6166423ee432e26781" }).exec(); 
         done();
     });
 
     afterEach(function (done) {
         User.remove({ '_id': "56810ccd4db438a8399e474b" }).exec();
         Ticket.remove({ '_id': "567d6c01937e3d6c4817d69e" }).exec();
-        Event.remove({ '_id': "56814c6166423ee432e26780" }).exec();                      
-        mongoose.connection.db.dropDatabase();
+        Event.remove({ '_id': "56814c6166423ee432e26780" }).exec();                          
+        //mongoose.connection.db.dropDatabase();
         done();
     });
     
