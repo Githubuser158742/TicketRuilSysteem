@@ -58,3 +58,6 @@ p.description.event {
 .pe-va {
   vertical-align: middle;
 }
+textarea {
+  resize: none;
+}
