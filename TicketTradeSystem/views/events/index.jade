@@ -26,5 +26,9 @@ block content
                     i
                         .description
                             =eventslist[event].description
-            a.btn.btn-info(href="/events/#{eventslist[event]._id}") Show
+            a.btn.btn-default(href="/events/#{eventslist[event]._id}") <i class="fa fa-eye fa-fw"></i>
+            - if (currentuser.admin ==true) {
+                a.btn.btn-info(href="/events/#{eventslist[event]._id}/edit", style="margin-left: 5px;") <i class="fa fa-pencil fa-fw"></i>
+                a.btn.btn-danger(href="/events/#{eventslist[event]._id}/delete", style="margin-left: 5px;") <i class="fa fa-trash fa-fw"></i>
+            - }
     - };

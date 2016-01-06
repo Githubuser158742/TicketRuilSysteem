@@ -20,7 +20,8 @@ router.get('/', isAuthenticated, function (req, res) {
                 res.status(500).send('server error - event overview');
                 res.end();
         }
-            res.render('events/index', { title: 'Events', eventslist: events, messages: req.flash('adminMessage'), search: false });
+        console.log(req.user);
+            res.render('events/index', { title: 'Events', eventslist: events, currentuser: req.user, messages: req.flash('adminMessage'), search: false });
         });
 });
 
@@ -79,7 +80,16 @@ router.get('/:id', loadEvent, isAuthenticated, function (req, res) {
 });
     
 router.get('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
-    res.render('events/edit', {event: req.event});
+    if (req.user.admin == true) {
+        res.render('events/edit', { event: req.event });
+    } else {
+        req.flash('adminMessage', 'You must be an administrator to do that.');
+        res.format({
+            html: function () {
+                res.redirect('/events');
+            }
+        });
+    }
 });
 
 router.post('/:id/edit', loadEvent, isAuthenticated, function (req, res) {

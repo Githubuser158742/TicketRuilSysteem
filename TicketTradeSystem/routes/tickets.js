@@ -20,7 +20,7 @@ router.get('/', isAuthenticated, function (req, res) {
             res.status(500).send('server error - tickets');
             res.end();
         }
-        res.render('tickets/index', {title: 'Tickets', ticketslist: tickets, currentuser: req._passport.session});
+        res.render('tickets/index', {title: 'Tickets', ticketslist: tickets, currentuser: req._passport.session, admin: req.user.admin});
     });
 });
 

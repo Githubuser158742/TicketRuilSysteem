@@ -72,4 +72,8 @@ router.post('/', isAuthenticated, function (req, res) {
     }
 });
 
+router.get('/admin', isAuthenticated, function (req, res) {
+    res.render('profile/admin', { user : req.user });
+});
+
 module.exports = router;
