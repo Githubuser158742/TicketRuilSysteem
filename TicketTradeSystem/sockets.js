@@ -5,7 +5,7 @@ module.exports = function (io) {
     var users = {};
 
     io.sockets.on('connection', function (socket) {
-
+        
         socket.on('disconnect', function () {
             if (io.nsps["/"].adapter.rooms[socket.room]) {
                 io.sockets.in(socket.room).emit('nick', Object.keys(io.nsps["/"].adapter.rooms[socket.room]).length);
