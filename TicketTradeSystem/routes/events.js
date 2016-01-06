@@ -74,6 +74,7 @@ router.get('/:id', loadEvent, isAuthenticated, function (req, res) {
             res.status(500).send('server error - chats event');
             res.end();
         }
+        console.log(chatsevent);
         //console.log(chatsevent);
         res.render('events/detail', { chatlistevent: chatsevent, nick: req.user.local.firstname + " " + req.user.local.lastname, event: req.event, title: req.event.name });
     });
