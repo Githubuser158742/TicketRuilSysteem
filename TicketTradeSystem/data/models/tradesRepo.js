@@ -1,6 +1,6 @@
-﻿"use strict";
-
+﻿/*jshint -W004 */
 var tradesRepo = (function () {
+    "use strict";
 var Trade = require('./trade.js');
     var getAllTrades = function (next) {
         Trade.find({})

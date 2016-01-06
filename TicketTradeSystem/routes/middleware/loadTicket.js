@@ -1,7 +1,7 @@
-﻿"use strict";
-var Ticket = require('../../data/models/ticket');
+﻿var Ticket = require('../../data/models/ticket');
 
 function loadTicket(req, res, next) {
+    "use strict";
     Ticket.findById({_id: req.params.id}, function (err, ticket) {
         if (err) {
             return next(err);

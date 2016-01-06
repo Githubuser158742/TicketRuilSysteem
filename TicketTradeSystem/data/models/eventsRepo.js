@@ -1,7 +1,7 @@
-﻿"use strict";
-//var mongoose = require('mongoose');
+﻿//var mongoose = require('mongoose');
 
 var eventsRepo = (function () {
+    "use strict";
     var Event = require('./event.js');
     var User = require('./user.js');
     var getAllEvents = function (next) {

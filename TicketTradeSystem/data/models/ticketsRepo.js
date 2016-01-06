@@ -1,7 +1,7 @@
-﻿"use strict";
-//var mongoose = require('mongoose');
+﻿//var mongoose = require('mongoose');
 
 var ticketsRepo = (function () {
+    "use strict";
     var Ticket = require('./ticket.js');
     var getAllTickets = function (next) {
         Ticket.find({}).sort('price').populate('_event _user').exec(function (err, docs) {
@@ -12,7 +12,7 @@ var ticketsRepo = (function () {
             //console.log(docs);
             var docs2 = [];
             docs.forEach(function (doc) { 
-                if (doc._event.eventCancelled == false && doc._user != null && doc.amount > 0) { docs2.push(doc); }
+                if (doc._event.eventCancelled === false && doc._user !== null && doc.amount > 0) { docs2.push(doc); }
             });
             //console.log(docs2);
             next(null, docs2);

@@ -1,5 +1,4 @@
-﻿"use strict";
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var async = require('async');
 
@@ -76,7 +75,7 @@ router.post('/:id', loadTicket, isAuthenticated, function (req, res) {
                     res.redirect('/tickets');
                 }
             });
-        };
+        }
     });
 });
 

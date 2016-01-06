@@ -7,4 +7,4 @@
     }
 }
 
-module.exports = isNotAuthenticated
+module.exports = isNotAuthenticated;

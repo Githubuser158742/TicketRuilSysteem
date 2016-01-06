@@ -1,4 +1,5 @@
-﻿var expect = require('chai').expect;
+﻿/*jshint expr: true*/
+var expect = require('chai').expect;
 var request = require('superagent');
 var server = request.agent();
 var mongoose = require('mongoose');

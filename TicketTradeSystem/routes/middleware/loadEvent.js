@@ -1,7 +1,7 @@
-﻿"use strict";
-var Event = require('../../data/models/event');
+﻿var Event = require('../../data/models/event');
 
 function loadEvent(req, res, next) {
+    "use strict";
     Event.findById({_id: req.params.id}, function (err, event) {
         if (err) {
             return next(err);

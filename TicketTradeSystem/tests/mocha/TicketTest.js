@@ -1,8 +1,9 @@
-﻿var expect = require('chai').expect;
+﻿/*jshint expr: true*/
+var expect = require('chai').expect;
 var mongoose = require('mongoose');
 var request = require('superagent');
 var server = request.agent();
-var config = require('../../config/config.js')
+var config = require('../../config/config.js');
 var Ticket = require('../../data/models/ticket');
 var Event = require('../../data/models/event');
 var User = require('../../data/models/user');

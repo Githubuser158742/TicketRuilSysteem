@@ -1,5 +1,4 @@
-﻿"use strict";
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var io = require('socket.io');
@@ -81,7 +80,7 @@ router.get('/:id', loadEvent, isAuthenticated, function (req, res) {
 });
     
 router.get('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
-    if (req.user.admin == true) {
+    if (req.user.admin === true) {
         res.render('events/edit', { event: req.event });
     } else {
         req.flash('adminMessage', 'You must be an administrator to do that.');
@@ -94,7 +93,7 @@ router.get('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
 });
 
 router.post('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
-    if (req.user.admin == true) {
+    if (req.user.admin === true) {
     var name = req.body.name,
         description = req.body.description,
         date = req.body.date,
@@ -137,7 +136,7 @@ router.post('/:id/edit', loadEvent, isAuthenticated, function (req, res) {
 });
 
 router.get('/:id/delete', loadEvent, isAuthenticated, function (req, res) {
-    if (req.user.admin == true) {
+    if (req.user.admin === true) {
         req.event.update({ eventCancelled: true }, function (err) {
             if (err) {
                 res.send('Delete failed' + err);

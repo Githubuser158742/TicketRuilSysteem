@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿/*jshint -W004 */
 var express = require('express');
 var router = express.Router();
 
@@ -37,13 +37,13 @@ router.post('/', isAuthenticated, function (req, res) {
             if (user.validPassword(req.body.password)) {
                 user.local.password = user.generateHash(req.body.newpassword1);
                 user.save(function (err) {
-                    if (err) return next(err)
+                    if (err) return next(err);
                     req.login(user, function (err) {
-                        if (err) return next(err)
+                        if (err) return next(err);
                         req.flash('detailsChanged', 'Your details have been changed!');
                         res.redirect('/profile');
-                    })
-                })
+                    });
+                });
             } else {
                 req.flash('error', 'Your old password was incorrect! Please try again.');
                 res.redirect('/profile');
@@ -62,12 +62,12 @@ router.post('/', isAuthenticated, function (req, res) {
         user.local.number = req.body.number;
         user.local.zip = req.body.zip;
         user.save(function (err) {
-            if (err) return next(err)
+            if (err) return next(err);
             req.login(user, function (err) {
-                if (err) return next(err)
+                if (err) return next(err);
                 req.flash('detailsChanged', 'Your details have been changed!');
                 res.redirect('/profile');
-            })
+            });
         });
     }
 });

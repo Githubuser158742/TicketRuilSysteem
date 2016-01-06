@@ -1,7 +1,7 @@
-﻿"use strict";
-var Event = require('../../data/models/event');
+﻿var Event = require('../../data/models/event');
 
 function loadEventForTicketPost(req, res, next) {
+    "use strict";
     Event.findById({_id: req.body.eventid}, function (err, event) {
         if (err) {
             return next(err);

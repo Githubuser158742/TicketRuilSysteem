@@ -1,5 +1,4 @@
-﻿"use strict";
-var express = require('express');
+﻿var express = require('express');
 var path = require('path');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -53,7 +52,7 @@ app.use('/trades', trades);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    console.log("----- ERROR 404: NOT FOUND -----")
+    console.log("----- ERROR 404: NOT FOUND -----");
     console.log(req);
     var err = new Error('Not Found');
     err.status = 404;

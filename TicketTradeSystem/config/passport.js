@@ -1,9 +1,9 @@
-﻿"use strict";
-var LocalStrategy = require('passport-local').Strategy;
+﻿var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../data/models/user');
 var configAuth = require('./auth.js');
 module.exports = function (passport) {
+    "use strict";
     // passport session setup
     // required for persistent login sessions
     // passport needs ability to serialize and unserialize users out of session
