@@ -49,7 +49,7 @@ router.post("/search", function (req, res) {
             res.status(500).send('server error - event search');
             res.end();
         }
-        res.render('events/index', { title: "Zoeken: " + req.body.search, eventslist: events, search: true });
+        res.render('events/index', { title: "Zoeken: " + req.body.search, eventslist: events, search: true, currentuser: req.user });
     });
 });
 
