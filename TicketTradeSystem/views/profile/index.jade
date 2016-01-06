@@ -26,10 +26,10 @@ block content
         .row
             .form-group.col-md-10
                 label(for='street') Street:
-                input(type='text',name='street', class='form-control', required)
+                input(type='text',name='street', class='form-control', value="#{user.local.street}", required)
             .form-group.col-md-2
                 label(for='number') Number:
-                input(type='text',name='number', class='form-control', required)
+                input(type='text',name='number', class='form-control', value="#{user.local.number}", required)
         .row
             .form-group.col-md-2
                 label(for='zip') Zip code:
