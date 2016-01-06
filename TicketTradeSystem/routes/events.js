@@ -35,7 +35,7 @@ router.get('/myevents', isAuthenticated, function (req, res) {
 });
 
 router.get('/new', isAuthenticated, function (req, res) {
-    res.render('events/new', {title: 'New Event'});
+    res.render('events/new', {title: 'New Event', currentuser: req.user});
 });
 
 router.get("/search", function (req, res) {
